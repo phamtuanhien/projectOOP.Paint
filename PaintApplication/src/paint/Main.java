@@ -5,6 +5,9 @@
  */
 package paint;
 
+import java.awt.Color;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Tuan Hien
@@ -14,8 +17,15 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    private PaintPanel paintPanel;
+    private JPanel backgroundPanel = new JPanel();
     public Main() {
         initComponents();
+        paintPanel = new PaintPanel(800, 400);
+        backgroundPanel.setLayout(null);
+        backgroundPanel.setBackground(new Color(219, 228, 241));
+        backgroundPanel.add(paintPanel);
+        jScrollPane.setViewportView(backgroundPanel);
     }
 
     /**
@@ -52,6 +62,7 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jPanelView = new javax.swing.JPanel();
+        jScrollPane = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuNew = new javax.swing.JMenuItem();
@@ -62,10 +73,11 @@ public class Main extends javax.swing.JFrame {
         jMenuExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 51, 102));
         setName("MainFrame"); // NOI18N
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setToolTipText("");
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jPanelOption.setBackground(new java.awt.Color(245, 245, 245));
@@ -210,7 +222,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(bMagnifier, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(668, Short.MAX_VALUE))
+                .addContainerGap(704, Short.MAX_VALUE))
         );
         jPanelOptionLayout.setVerticalGroup(
             jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +278,7 @@ public class Main extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel6)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                .addGap(40, 40, 40))
         );
 
         jTabbedPane1.addTab("Option", jPanelOption);
@@ -275,7 +287,7 @@ public class Main extends javax.swing.JFrame {
         jPanelView.setLayout(jPanelViewLayout);
         jPanelViewLayout.setHorizontalGroup(
             jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1159, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanelViewLayout.setVerticalGroup(
             jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,6 +295,9 @@ public class Main extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("View", jPanelView);
+
+        jScrollPane.setAlignmentX(0.0F);
+        jScrollPane.setAlignmentY(0.0F);
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setFocusable(false);
@@ -363,12 +378,15 @@ public class Main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
+            .addComponent(jScrollPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 423, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -466,6 +484,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuSaveAs;
     private javax.swing.JPanel jPanelOption;
     private javax.swing.JPanel jPanelView;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
