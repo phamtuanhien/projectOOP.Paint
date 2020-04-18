@@ -6,7 +6,16 @@
 package paint;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -19,15 +28,29 @@ public class Main extends javax.swing.JFrame {
      */
     private PaintPanel paintPanel;
     private JPanel backgroundPanel = new JPanel();
+    private BufferedImage buff_img;
     public Main() {
         initComponents();
         paintPanel = new PaintPanel(800, 400);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(new Color(219, 228, 241));
+        backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+5,paintPanel.getHeight()+5));
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
     }
-
+    
+    
+    //che do ve
+    public static enum DrawMode {PENCIL, ERASER, FILL, COLORPICKER, TEXT, MAGNIFIER}
+    private DrawMode drawMode = DrawMode.PENCIL;
+    public DrawMode getDrawMode() {
+        return drawMode;
+    }
+    public void setDrawMode(DrawMode newDrawMode) {
+        this.drawMode = newDrawMode;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,12 +88,12 @@ public class Main extends javax.swing.JFrame {
         jScrollPane = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuNew = new javax.swing.JMenuItem();
-        jMenuOpen = new javax.swing.JMenuItem();
-        jMenuSave = new javax.swing.JMenuItem();
-        jMenuSaveAs = new javax.swing.JMenuItem();
+        jNew = new javax.swing.JMenuItem();
+        jOpen = new javax.swing.JMenuItem();
+        jSave = new javax.swing.JMenuItem();
+        jSaveAs = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuExit = new javax.swing.JMenuItem();
+        jExit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 51, 102));
@@ -90,8 +113,18 @@ public class Main extends javax.swing.JFrame {
         });
 
         bCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/copy.png"))); // NOI18N
+        bCopy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCopyActionPerformed(evt);
+            }
+        });
 
         bCut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/cut.png"))); // NOI18N
+        bCut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCutActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
@@ -117,10 +150,25 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("Select");
 
         cbRotate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rotate", "Rotate right 90º", "Rotate left 90º", "Flip vertical", "Flip horizontal" }));
+        cbRotate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRotateActionPerformed(evt);
+            }
+        });
 
         bUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/undo.png"))); // NOI18N
+        bUndo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUndoActionPerformed(evt);
+            }
+        });
 
         bRedo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/redo.png"))); // NOI18N
+        bRedo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRedoActionPerformed(evt);
+            }
+        });
 
         jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
@@ -145,16 +193,46 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setText("Redo");
 
         bPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/pencil.png"))); // NOI18N
+        bPencil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPencilActionPerformed(evt);
+            }
+        });
 
         bEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/eraser.png"))); // NOI18N
+        bEraser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEraserActionPerformed(evt);
+            }
+        });
 
         bFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/fill.png"))); // NOI18N
+        bFill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFillActionPerformed(evt);
+            }
+        });
 
         bColorPicker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/color-picker.png"))); // NOI18N
+        bColorPicker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bColorPickerActionPerformed(evt);
+            }
+        });
 
         bText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/A.png"))); // NOI18N
+        bText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTextActionPerformed(evt);
+            }
+        });
 
         bMagnifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/search.png"))); // NOI18N
+        bMagnifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMagnifierActionPerformed(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(245, 245, 245));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -309,65 +387,65 @@ public class Main extends javax.swing.JFrame {
         jMenu1.setMaximumSize(new java.awt.Dimension(40, 32767));
         jMenu1.setPreferredSize(new java.awt.Dimension(30, 24));
 
-        jMenuNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuNew.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/new.png"))); // NOI18N
-        jMenuNew.setText("New");
-        jMenuNew.setPreferredSize(new java.awt.Dimension(250, 45));
-        jMenuNew.addActionListener(new java.awt.event.ActionListener() {
+        jNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jNew.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/new.png"))); // NOI18N
+        jNew.setText("New");
+        jNew.setPreferredSize(new java.awt.Dimension(250, 45));
+        jNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuNewActionPerformed(evt);
+                jNewActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuNew);
+        jMenu1.add(jNew);
 
-        jMenuOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuOpen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/open.png"))); // NOI18N
-        jMenuOpen.setText("Open");
-        jMenuOpen.setPreferredSize(new java.awt.Dimension(250, 45));
-        jMenuOpen.addActionListener(new java.awt.event.ActionListener() {
+        jOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jOpen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/open.png"))); // NOI18N
+        jOpen.setText("Open");
+        jOpen.setPreferredSize(new java.awt.Dimension(250, 45));
+        jOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuOpenActionPerformed(evt);
+                jOpenActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuOpen);
+        jMenu1.add(jOpen);
 
-        jMenuSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuSave.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/save.png"))); // NOI18N
-        jMenuSave.setText("Save");
-        jMenuSave.setPreferredSize(new java.awt.Dimension(250, 45));
-        jMenuSave.addActionListener(new java.awt.event.ActionListener() {
+        jSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jSave.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/save.png"))); // NOI18N
+        jSave.setText("Save");
+        jSave.setPreferredSize(new java.awt.Dimension(250, 45));
+        jSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSaveActionPerformed(evt);
+                jSaveActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuSave);
+        jMenu1.add(jSave);
 
-        jMenuSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuSaveAs.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuSaveAs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/saveas.png"))); // NOI18N
-        jMenuSaveAs.setText("Save As");
-        jMenuSaveAs.setPreferredSize(new java.awt.Dimension(250, 45));
-        jMenuSaveAs.addActionListener(new java.awt.event.ActionListener() {
+        jSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jSaveAs.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jSaveAs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/saveas.png"))); // NOI18N
+        jSaveAs.setText("Save As");
+        jSaveAs.setPreferredSize(new java.awt.Dimension(250, 45));
+        jSaveAs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuSaveAsActionPerformed(evt);
+                jSaveAsActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuSaveAs);
+        jMenu1.add(jSaveAs);
         jMenu1.add(jSeparator1);
 
-        jMenuExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jMenuExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/exit.png"))); // NOI18N
-        jMenuExit.setText("Exit");
-        jMenuExit.setPreferredSize(new java.awt.Dimension(250, 45));
-        jMenuExit.addActionListener(new java.awt.event.ActionListener() {
+        jExit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/exit.png"))); // NOI18N
+        jExit.setText("Exit");
+        jExit.setPreferredSize(new java.awt.Dimension(250, 45));
+        jExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuExitActionPerformed(evt);
+                jExitActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuExit);
+        jMenu1.add(jExit);
 
         jMenuBar1.add(jMenu1);
 
@@ -378,7 +456,7 @@ public class Main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
-            .addComponent(jScrollPane)
+            .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,33 +470,118 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNewActionPerformed
+    private void jNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuNewActionPerformed
+    }//GEN-LAST:event_jNewActionPerformed
 
-    private void jMenuSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSaveActionPerformed
+    private void jSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuSaveActionPerformed
+        saveImage();
+    }//GEN-LAST:event_jSaveActionPerformed
 
-    private void jMenuSaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSaveAsActionPerformed
+    private void saveImage() {
+        buff_img = paintPanel.getImage();
+        JFileChooser fileChoose = new JFileChooser();
+        fileChoose.setDialogTitle("Save Image");
+        int userSelection = fileChoose.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File f = fileChoose.getSelectedFile();
+            String path = f.getAbsolutePath();
+            try {
+                ImageIO.write(buff_img, "png", new File(path+"."+"png"));
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+    }
+    private void jSaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuSaveAsActionPerformed
+    }//GEN-LAST:event_jSaveAsActionPerformed
 
-    private void jMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExitActionPerformed
+    private void jExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuExitActionPerformed
+    }//GEN-LAST:event_jExitActionPerformed
 
     private void bPasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPasteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bPasteActionPerformed
 
-    private void jMenuOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuOpenActionPerformed
+    private void jOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuOpenActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter png = new FileNameExtensionFilter("PNG (*.png)", "png");
+        fileChooser.setFileFilter(png);
+        FileNameExtensionFilter jpg = new FileNameExtensionFilter("JPEG (*.jpeg, *.jpg, *.jpe, *.jfif)", "jpg", "jpeg", "jpe", "jfif");
+        fileChooser.setFileFilter(jpg);
+        FileNameExtensionFilter all = new FileNameExtensionFilter("All Picture Files", "bmp", "dib", "jpg", "jpeg", "jpe", "jfif", "gif", "tif", "tiff", "png", "ico");
+        fileChooser.setFileFilter(all);
+        fileChooser.setDialogTitle("Open a new image");
+        int check = fileChooser.showSaveDialog(null);
+        BufferedImage img = null;
+        if (check == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                img = ImageIO.read(file);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (img != null) {
+            paintPanel.setImage(img);
+            backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+5,paintPanel.getHeight()+5));
+        }  
+    }//GEN-LAST:event_jOpenActionPerformed
 
     private void bSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSelectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bSelectActionPerformed
+
+    private void bCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCopyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bCopyActionPerformed
+
+    private void bCutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bCutActionPerformed
+
+    private void cbRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRotateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRotateActionPerformed
+
+    private void bUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUndoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bUndoActionPerformed
+
+    private void bRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRedoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bRedoActionPerformed
+
+    private void bPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPencilActionPerformed
+        // TODO add your handling code here:
+        setDrawMode(drawMode.PENCIL);
+    }//GEN-LAST:event_bPencilActionPerformed
+
+    private void bColorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bColorPickerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bColorPickerActionPerformed
+
+    private void bEraserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEraserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bEraserActionPerformed
+
+    private void bTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bTextActionPerformed
+
+    private void bFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bFillActionPerformed
+
+    private void bMagnifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMagnifierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bMagnifierActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,6 +632,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JToggleButton bText;
     private javax.swing.JButton bUndo;
     private javax.swing.JComboBox<String> cbRotate;
+    private javax.swing.JMenuItem jExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -477,13 +641,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuExit;
-    private javax.swing.JMenuItem jMenuNew;
-    private javax.swing.JMenuItem jMenuOpen;
-    private javax.swing.JMenuItem jMenuSave;
-    private javax.swing.JMenuItem jMenuSaveAs;
+    private javax.swing.JMenuItem jNew;
+    private javax.swing.JMenuItem jOpen;
     private javax.swing.JPanel jPanelOption;
     private javax.swing.JPanel jPanelView;
+    private javax.swing.JMenuItem jSave;
+    private javax.swing.JMenuItem jSaveAs;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

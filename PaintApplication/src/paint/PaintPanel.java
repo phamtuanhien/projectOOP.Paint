@@ -13,7 +13,6 @@ package paint;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -24,10 +23,11 @@ public class PaintPanel extends javax.swing.JPanel {
     /**
      * Creates new form DrawPanel
     */
-    private int width;
-    private int height;
-    Graphics2D g2d;
-    private BufferedImage buf_image;
+//    private int width;
+//    private int height;
+    Graphics2D g2d, g2; // doi tuong do hoa
+    private BufferedImage buff_img; // anh de ve
+    private boolean isSaved;
     public PaintPanel() {
         initComponents();
         
@@ -35,19 +35,32 @@ public class PaintPanel extends javax.swing.JPanel {
     
     public PaintPanel(int width, int height) {
         initComponents();
-        this.width = width;
-        this.height = height;
-        this.setBackground(Color.WHITE);
+//        this.width = width;
+//        this.height = height;
         this.setSize(width, height);
         this.setLocation(5, 5);
+        buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        g2d = (Graphics2D) buff_img.createGraphics();
+        g2d.setColor(new Color(255, 255, 255));
+        g2d.fillRect(0, 0, width, height);
+        g2d.dispose();
+        
     }
     private void doDrawing(Graphics g) {
-        g2d = (Graphics2D) g;
-        g2d.setColor(Color.green);
-        g2d.fillOval(0, 0, 40, 40);
+        g2 = (Graphics2D) g;
+        g2.drawImage(buff_img, null, 0, 0);
     }
-    
-    
+    public void setImage(BufferedImage img) {
+        buff_img = img;
+        g2d = (Graphics2D) buff_img.getGraphics();
+        isSaved = true;
+        this.setSize(buff_img.getWidth(), buff_img.getHeight());
+        this.revalidate();
+        this.repaint();
+    }
+    public BufferedImage getImage() {
+        return buff_img;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
