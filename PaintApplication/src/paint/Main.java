@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
         paintPanel = new PaintPanel(800, 400);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(new Color(219, 228, 241));
-        backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+10,paintPanel.getHeight()+10));
+        backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+5,paintPanel.getHeight()+5));
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
     }
@@ -463,7 +463,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
 

@@ -27,6 +27,7 @@ public class PaintPanel extends javax.swing.JPanel {
 //    private int height;
     Graphics2D g2d, g2; // doi tuong do hoa
     private BufferedImage buff_img; // anh de ve
+    private boolean isSaved;
     public PaintPanel() {
         initComponents();
         
@@ -52,6 +53,7 @@ public class PaintPanel extends javax.swing.JPanel {
     public void setImage(BufferedImage img) {
         buff_img = img;
         g2d = (Graphics2D) buff_img.getGraphics();
+        isSaved = true;
         this.setSize(buff_img.getWidth(), buff_img.getHeight());
         this.revalidate();
         this.repaint();
