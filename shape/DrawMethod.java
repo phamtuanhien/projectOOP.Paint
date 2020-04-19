@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 
 /**
  *
- * @author hoang
+ * @author hoanganh
  */
 public interface DrawMethod {
     public void draw(Graphics2D g2d);
