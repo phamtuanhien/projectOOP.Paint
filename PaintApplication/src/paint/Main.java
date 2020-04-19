@@ -105,7 +105,7 @@ public class Main extends javax.swing.JFrame {
 
         jPanelOption.setBackground(new java.awt.Color(245, 245, 245));
 
-        bPaste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/paste.png"))); // NOI18N
+        bPaste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/copy.png"))); // NOI18N
         bPaste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPasteActionPerformed(evt);
