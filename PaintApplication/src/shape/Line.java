@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 
 /**
  *
- * @author admin
+ * @author dai
  */
 public class Line extends Shape implements DrawType{
 
