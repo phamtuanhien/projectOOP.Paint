@@ -5,7 +5,6 @@
  */
 package shape;
 
-import com.sun.swing.internal.plaf.basic.resources.basic;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
