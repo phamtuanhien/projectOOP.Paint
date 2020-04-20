@@ -59,13 +59,14 @@ public class Shape implements Serializable {
     protected float[] dash; //định dạng phần ẩn, phần hiện của đoạn thẳng
                     // ví dụ dash = {2f , 0f , 2f}; nghĩa là vẽ 1 đoạn
                     // 2f pixel rồi cách ra 0f pixel rồi vẽ tiếp đoạn 2f pixel
-    protected float dash_phase;
+    protected float dash_phase; // độ dài đoạn lồi ở điểm bắt đầu
     
     //định dạng thông tin của 1 stroke
     public void setStroke(BasicStroke stroke) {
         this.width = stroke.getLineWidth();
         this.cap = stroke.getEndCap();
         this.join = stroke.getLineJoin();
+        this.miterlimit = stroke.getMiterLimit();
         this.dash = stroke.getDashArray();
         this.dash_phase = stroke.getDashPhase();
     }
