@@ -11,6 +11,6 @@ import java.awt.Graphics2D;
  *
  * @author hoanganh
  */
-public interface DrawMethod {
+public interface DrawType{
     public void draw(Graphics2D g2d);
 }
