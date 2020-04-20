@@ -5,13 +5,12 @@
  */
 package shape;
 
-import com.sun.swing.internal.plaf.basic.resources.basic;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
 /**
  *
- * @author admin
+ * @author dai
  */
 public class Line extends Shape implements DrawType{
 
