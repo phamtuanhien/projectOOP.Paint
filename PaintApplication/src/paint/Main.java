@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -26,28 +27,21 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    
+    private ButtonGroup buttonGroup;
     private PaintPanel paintPanel;
     private JPanel backgroundPanel = new JPanel();
     private BufferedImage buff_img;
     public Main() {
         initComponents();
+        
         paintPanel = new PaintPanel(800, 400);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(new Color(219, 228, 241));
         backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+5,paintPanel.getHeight()+5));
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
-    }
-    
-    
-    //che do ve
-    public static enum DrawMode {PENCIL, ERASER, FILL, COLORPICKER, TEXT, MAGNIFIER}
-    private DrawMode drawMode = DrawMode.PENCIL;
-    public DrawMode getDrawMode() {
-        return drawMode;
-    }
-    public void setDrawMode(DrawMode newDrawMode) {
-        this.drawMode = newDrawMode;
+        paintPanel.setCoordinate(jCoordinate);
     }
     
     
@@ -60,6 +54,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelOption = new javax.swing.JPanel();
         bPaste = new javax.swing.JButton();
@@ -84,8 +79,18 @@ public class Main extends javax.swing.JFrame {
         bMagnifier = new javax.swing.JToggleButton();
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        bCurve = new javax.swing.JToggleButton();
+        bLine = new javax.swing.JToggleButton();
+        bOval = new javax.swing.JToggleButton();
+        bHexagon = new javax.swing.JToggleButton();
+        bRectangle = new javax.swing.JToggleButton();
+        bRoundRectangle = new javax.swing.JToggleButton();
+        bTriangle = new javax.swing.JToggleButton();
+        bRightTriangle = new javax.swing.JToggleButton();
         jPanelView = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
+        jCoordinate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jNew = new javax.swing.JMenuItem();
@@ -136,6 +141,7 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("ClipBoard");
 
+        buttonGroup1.add(bSelect);
         bSelect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/selection.png"))); // NOI18N
         bSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,13 +198,16 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Redo");
 
+        buttonGroup1.add(bPencil);
         bPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/pencil.png"))); // NOI18N
+        bPencil.setSelected(true);
         bPencil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPencilActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(bEraser);
         bEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/eraser.png"))); // NOI18N
         bEraser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +215,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bFill);
         bFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/fill.png"))); // NOI18N
         bFill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,6 +223,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bColorPicker);
         bColorPicker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/color-picker.png"))); // NOI18N
         bColorPicker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +231,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bText);
         bText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/A.png"))); // NOI18N
         bText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +239,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bMagnifier);
         bMagnifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/search.png"))); // NOI18N
         bMagnifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,6 +257,76 @@ public class Main extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator5.setPreferredSize(new java.awt.Dimension(1, 0));
+
+        jLabel7.setBackground(new java.awt.Color(245, 245, 245));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Shapes");
+
+        buttonGroup1.add(bCurve);
+        bCurve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/curve.png"))); // NOI18N
+        bCurve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCurveActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bLine);
+        bLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/line.png"))); // NOI18N
+        bLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLineActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bOval);
+        bOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/oval.png"))); // NOI18N
+        bOval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOvalActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bHexagon);
+        bHexagon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/poligon.png"))); // NOI18N
+        bHexagon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bHexagonActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bRectangle);
+        bRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/rectangle.png"))); // NOI18N
+        bRectangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRectangleActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bRoundRectangle);
+        bRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/roundedRectangle.png"))); // NOI18N
+        bRoundRectangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRoundRectangleActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bTriangle);
+        bTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/triangle.png"))); // NOI18N
+        bTriangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bTriangleActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(bRightTriangle);
+        bRightTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/right-triangle.png"))); // NOI18N
+        bRightTriangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRightTriangleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelOptionLayout = new javax.swing.GroupLayout(jPanelOption);
         jPanelOption.setLayout(jPanelOptionLayout);
@@ -267,7 +350,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cbRotate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,21 +369,40 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelOptionLayout.createSequentialGroup()
                         .addComponent(bPencil, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bEraser, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelOptionLayout.createSequentialGroup()
                         .addComponent(bColorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bText, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bFill, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bMagnifier, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(704, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bLine, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bCurve, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelOptionLayout.createSequentialGroup()
+                        .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bOval, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bHexagon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bRoundRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bRightTriangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bTriangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(568, Short.MAX_VALUE))
         );
         jPanelOptionLayout.setVerticalGroup(
             jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,16 +449,30 @@ public class Main extends javax.swing.JFrame {
                                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(bPencil)
                                             .addComponent(bEraser)
-                                            .addComponent(bFill))
+                                            .addComponent(bFill)
+                                            .addComponent(bCurve)
+                                            .addComponent(bOval)
+                                            .addComponent(bRectangle)
+                                            .addComponent(bTriangle))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bColorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bText)
-                                            .addComponent(bMagnifier))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(40, 40, 40))
+                                            .addGroup(jPanelOptionLayout.createSequentialGroup()
+                                                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(bColorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(bText)
+                                                    .addComponent(bMagnifier))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel6))
+                                            .addGroup(jPanelOptionLayout.createSequentialGroup()
+                                                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(bLine)
+                                                    .addComponent(bHexagon)
+                                                    .addComponent(bRoundRectangle)
+                                                    .addComponent(bRightTriangle))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel7)))))
+                                .addGap(4, 4, 4)))))
+                .addGap(36, 36, 36))
         );
 
         jTabbedPane1.addTab("Option", jPanelOption);
@@ -374,8 +490,11 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("View", jPanelView);
 
+        jScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane.setAlignmentX(0.0F);
         jScrollPane.setAlignmentY(0.0F);
+
+        jCoordinate.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setFocusable(false);
@@ -457,14 +576,20 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
             .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+                .addComponent(jCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -560,7 +685,6 @@ public class Main extends javax.swing.JFrame {
 
     private void bPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPencilActionPerformed
         // TODO add your handling code here:
-        setDrawMode(drawMode.PENCIL);
     }//GEN-LAST:event_bPencilActionPerformed
 
     private void bColorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bColorPickerActionPerformed
@@ -582,6 +706,38 @@ public class Main extends javax.swing.JFrame {
     private void bMagnifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMagnifierActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bMagnifierActionPerformed
+
+    private void bCurveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCurveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bCurveActionPerformed
+
+    private void bHexagonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHexagonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bHexagonActionPerformed
+
+    private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bLineActionPerformed
+
+    private void bOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOvalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bOvalActionPerformed
+
+    private void bRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRectangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bRectangleActionPerformed
+
+    private void bRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRoundRectangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bRoundRectangleActionPerformed
+
+    private void bTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTriangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bTriangleActionPerformed
+
+    private void bRightTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRightTriangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bRightTriangleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -621,17 +777,27 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton bColorPicker;
     private javax.swing.JButton bCopy;
+    private javax.swing.JToggleButton bCurve;
     private javax.swing.JButton bCut;
     private javax.swing.JToggleButton bEraser;
     private javax.swing.JToggleButton bFill;
+    private javax.swing.JToggleButton bHexagon;
+    private javax.swing.JToggleButton bLine;
     private javax.swing.JToggleButton bMagnifier;
+    private javax.swing.JToggleButton bOval;
     private javax.swing.JButton bPaste;
     private javax.swing.JToggleButton bPencil;
+    private javax.swing.JToggleButton bRectangle;
     private javax.swing.JButton bRedo;
+    private javax.swing.JToggleButton bRightTriangle;
+    private javax.swing.JToggleButton bRoundRectangle;
     private javax.swing.JToggleButton bSelect;
     private javax.swing.JToggleButton bText;
+    private javax.swing.JToggleButton bTriangle;
     private javax.swing.JButton bUndo;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbRotate;
+    private javax.swing.JLabel jCoordinate;
     private javax.swing.JMenuItem jExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -639,6 +805,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jNew;
