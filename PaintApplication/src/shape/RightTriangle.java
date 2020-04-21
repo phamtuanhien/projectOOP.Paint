@@ -29,8 +29,10 @@ public class RightTriangle extends Shape implements DrawType {
         BasicStroke stroke = new BasicStroke(width, cap, join, miterlimit, dash, dash_phase);
         g2d.setStroke(stroke);
         //Vẽ nền tam giác
+        if (doFill == true){
         g2d.setColor(fillColor);
         g2d.fillPolygon(x, y, 3);
+        }
         //Vẽ viền tam giác
         g2d.setColor(strokeColor);
         g2d.drawPolygon(x, y, 3);

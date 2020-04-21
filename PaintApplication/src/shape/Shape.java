@@ -22,7 +22,7 @@ public class Shape implements Serializable {
     protected Color strokeColor;
     protected ArrayList <Point> arrPoint = new ArrayList<Point>();
     protected Point startPoint,endPoint;
-    
+    protected boolean doFill; //Có đổ màu nền hay không ? True - Có / False - Không
     //Lấy màu
     public Color getStrokeColor() {
         return strokeColor;
@@ -51,7 +51,15 @@ public class Shape implements Serializable {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
     }
-    
+
+    public boolean isDoFill() {
+        return doFill;
+    }
+
+    public void setDoFill(boolean doFill) {
+        this.doFill = doFill;
+    }
+
     protected float width; //độ dày đoạn thẳng
     protected int cap; //viền 2 đầu đoạn thẳng
     protected int join; //Định dạng đường nối giữa 2 đt cắt nhau

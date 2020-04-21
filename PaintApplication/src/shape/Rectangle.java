@@ -26,8 +26,10 @@ public class Rectangle extends Shape implements DrawType {
     public void draw(Graphics2D g2d) {
         BasicStroke bs = new BasicStroke(width, cap, join, miterlimit, dash, dash_phase); //định dạng viền hcn 
         g2d.setStroke(bs);
+        if (doFill == true){
         g2d.setColor(fillColor);
         g2d.fillRect(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y), Math.abs(endPoint.x - startPoint.x), Math.abs(endPoint.y - startPoint.y));
+        }
         g2d.setColor(strokeColor); // vẽ viền
         g2d.drawRect(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y), Math.abs(endPoint.x - startPoint.x), Math.abs(endPoint.y - startPoint.y));
     }
