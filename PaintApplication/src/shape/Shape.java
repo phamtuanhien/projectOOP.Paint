@@ -21,9 +21,10 @@ import java.util.ArrayList;
 public class Shape implements Serializable {
     protected Color strokeColor;
     protected ArrayList <Point> arrPoint = new ArrayList<Point>();
-    protected Point startPoint,endPoint;
+    protected Point startPoint = new Point();
+    protected Point endPoint = new Point();
     protected boolean doFill; //Có đổ màu nền hay không ? True - Có / False - Không
-    //Lấy màu
+    //Lấy màu    
     public Color getStrokeColor() {
         return strokeColor;
     }

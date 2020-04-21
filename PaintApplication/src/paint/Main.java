@@ -73,7 +73,7 @@ public class Main extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         bPencil = new javax.swing.JToggleButton();
         bEraser = new javax.swing.JToggleButton();
-        bFill = new javax.swing.JToggleButton();
+        bBucket = new javax.swing.JToggleButton();
         bColorPicker = new javax.swing.JToggleButton();
         bText = new javax.swing.JToggleButton();
         bMagnifier = new javax.swing.JToggleButton();
@@ -215,11 +215,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(bFill);
-        bFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/fill.png"))); // NOI18N
-        bFill.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bBucket);
+        bBucket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/fill.png"))); // NOI18N
+        bBucket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bFillActionPerformed(evt);
+                bBucketActionPerformed(evt);
             }
         });
 
@@ -379,7 +379,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(bText, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bFill, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bBucket, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bMagnifier, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,7 +449,7 @@ public class Main extends javax.swing.JFrame {
                                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(bPencil)
                                             .addComponent(bEraser)
-                                            .addComponent(bFill)
+                                            .addComponent(bBucket)
                                             .addComponent(bCurve)
                                             .addComponent(bOval)
                                             .addComponent(bRectangle)
@@ -661,6 +661,7 @@ public class Main extends javax.swing.JFrame {
 
     private void bSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSelectActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("SELECT");
     }//GEN-LAST:event_bSelectActionPerformed
 
     private void bCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCopyActionPerformed
@@ -685,58 +686,72 @@ public class Main extends javax.swing.JFrame {
 
     private void bPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPencilActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("PENCIL");
     }//GEN-LAST:event_bPencilActionPerformed
 
     private void bColorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bColorPickerActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("COLORPICKER");
     }//GEN-LAST:event_bColorPickerActionPerformed
 
     private void bEraserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEraserActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("ERASER");
     }//GEN-LAST:event_bEraserActionPerformed
 
     private void bTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTextActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("TEXT");
     }//GEN-LAST:event_bTextActionPerformed
 
-    private void bFillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFillActionPerformed
+    private void bBucketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBucketActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bFillActionPerformed
+        paintPanel.setMode("BUCKET");
+    }//GEN-LAST:event_bBucketActionPerformed
 
     private void bMagnifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMagnifierActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("MAGNIFIER");
     }//GEN-LAST:event_bMagnifierActionPerformed
 
     private void bCurveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCurveActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("CURVE");
     }//GEN-LAST:event_bCurveActionPerformed
 
     private void bHexagonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHexagonActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("HEXAGON");
     }//GEN-LAST:event_bHexagonActionPerformed
 
     private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("LINE");
     }//GEN-LAST:event_bLineActionPerformed
 
     private void bOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOvalActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("OVAL");
     }//GEN-LAST:event_bOvalActionPerformed
 
     private void bRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRectangleActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("RECTANGLE");
     }//GEN-LAST:event_bRectangleActionPerformed
 
     private void bRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRoundRectangleActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("ROUNDRECTANGLE");
     }//GEN-LAST:event_bRoundRectangleActionPerformed
 
     private void bTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTriangleActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("TRIANGLE");
     }//GEN-LAST:event_bTriangleActionPerformed
 
     private void bRightTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRightTriangleActionPerformed
         // TODO add your handling code here:
+        paintPanel.setMode("RIGHTTRIANGLE");
     }//GEN-LAST:event_bRightTriangleActionPerformed
 
     /**
@@ -775,12 +790,12 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton bBucket;
     private javax.swing.JToggleButton bColorPicker;
     private javax.swing.JButton bCopy;
     private javax.swing.JToggleButton bCurve;
     private javax.swing.JButton bCut;
     private javax.swing.JToggleButton bEraser;
-    private javax.swing.JToggleButton bFill;
     private javax.swing.JToggleButton bHexagon;
     private javax.swing.JToggleButton bLine;
     private javax.swing.JToggleButton bMagnifier;

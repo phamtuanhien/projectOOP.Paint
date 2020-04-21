@@ -277,7 +277,7 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="bFill" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="bBucket" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="bMagnifier" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -366,7 +366,7 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="bPencil" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="bEraser" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="bFill" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="bBucket" min="-2" max="-2" attributes="0"/>
                                                   <Component id="bCurve" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="bOval" min="-2" max="-2" attributes="0"/>
                                                   <Component id="bRectangle" min="-2" max="-2" attributes="0"/>
@@ -617,7 +617,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEraserActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="bFill">
+            <Component class="javax.swing.JToggleButton" name="bBucket">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
@@ -627,7 +627,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bFillActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bBucketActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="bColorPicker">
