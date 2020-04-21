@@ -16,9 +16,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import javax.swing.JLabel;
 
-public class PaintPanel extends javax.swing.JPanel {
+public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
     /**
      * Creates new form DrawPanel
@@ -28,6 +33,8 @@ public class PaintPanel extends javax.swing.JPanel {
     Graphics2D g2d, g2; // doi tuong do hoa
     private BufferedImage buff_img; // anh de ve
     private boolean isSaved;
+    private Point startPoint,  endPoint;
+    private JLabel jCoordinate;
     public PaintPanel() {
         initComponents();
         
@@ -44,6 +51,8 @@ public class PaintPanel extends javax.swing.JPanel {
         g2d.setColor(new Color(255, 255, 255));
         g2d.fillRect(0, 0, width, height);
         g2d.dispose();
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
         
     }
     private void doDrawing(Graphics g) {
@@ -60,6 +69,9 @@ public class PaintPanel extends javax.swing.JPanel {
     }
     public BufferedImage getImage() {
         return buff_img;
+    }
+    public void setCoordinate(JLabel jCoordinate) {
+        this.jCoordinate = jCoordinate;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +99,46 @@ public class PaintPanel extends javax.swing.JPanel {
         super.paintComponent(g);
         doDrawing(g);
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        startPoint = e.getPoint();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        jCoordinate.setText("");
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        jCoordinate.setText(e.getX() + ", " + e.getY() + " px");
+        endPoint = e.getPoint();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        jCoordinate.setText(e.getX() + ", " + e.getY() + " px");
+        
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

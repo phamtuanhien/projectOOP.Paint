@@ -37,11 +37,12 @@ public class Main extends javax.swing.JFrame {
         backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+5,paintPanel.getHeight()+5));
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
+        paintPanel.setCoordinate(jCoordinate);
     }
     
     
     //che do ve
-    public static enum DrawMode {PENCIL, ERASER, FILL, COLORPICKER, TEXT, MAGNIFIER}
+    public static enum DrawMode {LINE, POLYGON, RECTANGLE, ROUNDRECT, PENCIL};
     private DrawMode drawMode = DrawMode.PENCIL;
     public DrawMode getDrawMode() {
         return drawMode;
@@ -84,8 +85,18 @@ public class Main extends javax.swing.JFrame {
         bMagnifier = new javax.swing.JToggleButton();
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jCurve = new javax.swing.JToggleButton();
+        jLine = new javax.swing.JToggleButton();
+        jOval = new javax.swing.JToggleButton();
+        jPolygon = new javax.swing.JToggleButton();
+        jRectangle = new javax.swing.JToggleButton();
+        jRoundRectangle = new javax.swing.JToggleButton();
+        jTriangle = new javax.swing.JToggleButton();
+        jToggleButton8 = new javax.swing.JToggleButton();
         jPanelView = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
+        jCoordinate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jNew = new javax.swing.JMenuItem();
@@ -245,6 +256,38 @@ public class Main extends javax.swing.JFrame {
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator5.setPreferredSize(new java.awt.Dimension(1, 0));
 
+        jLabel7.setBackground(new java.awt.Color(245, 245, 245));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Shapes");
+
+        jCurve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/curve.png"))); // NOI18N
+        jCurve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCurveActionPerformed(evt);
+            }
+        });
+
+        jLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/line.png"))); // NOI18N
+
+        jOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/oval.png"))); // NOI18N
+
+        jPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/poligon.png"))); // NOI18N
+        jPolygon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPolygonActionPerformed(evt);
+            }
+        });
+
+        jRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/rectangle.png"))); // NOI18N
+
+        jRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/roundedRectangle.png"))); // NOI18N
+
+        jTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/triangle.png"))); // NOI18N
+
+        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/right-triangle.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelOptionLayout = new javax.swing.GroupLayout(jPanelOption);
         jPanelOption.setLayout(jPanelOptionLayout);
         jPanelOptionLayout.setHorizontalGroup(
@@ -267,7 +310,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cbRotate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,21 +329,40 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelOptionLayout.createSequentialGroup()
                         .addComponent(bPencil, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bEraser, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelOptionLayout.createSequentialGroup()
                         .addComponent(bColorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bText, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bFill, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bMagnifier, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(704, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLine, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCurve, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelOptionLayout.createSequentialGroup()
+                        .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jOval, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPolygon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRoundRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTriangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(568, Short.MAX_VALUE))
         );
         jPanelOptionLayout.setVerticalGroup(
             jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,16 +409,30 @@ public class Main extends javax.swing.JFrame {
                                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(bPencil)
                                             .addComponent(bEraser)
-                                            .addComponent(bFill))
+                                            .addComponent(bFill)
+                                            .addComponent(jCurve)
+                                            .addComponent(jOval)
+                                            .addComponent(jRectangle)
+                                            .addComponent(jTriangle))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bColorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(bText)
-                                            .addComponent(bMagnifier))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel6)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(40, 40, 40))
+                                            .addGroup(jPanelOptionLayout.createSequentialGroup()
+                                                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(bColorPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(bText)
+                                                    .addComponent(bMagnifier))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel6))
+                                            .addGroup(jPanelOptionLayout.createSequentialGroup()
+                                                .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLine)
+                                                    .addComponent(jPolygon)
+                                                    .addComponent(jRoundRectangle)
+                                                    .addComponent(jToggleButton8))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel7)))))
+                                .addGap(4, 4, 4)))))
+                .addGap(36, 36, 36))
         );
 
         jTabbedPane1.addTab("Option", jPanelOption);
@@ -374,8 +450,11 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("View", jPanelView);
 
+        jScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane.setAlignmentX(0.0F);
         jScrollPane.setAlignmentY(0.0F);
+
+        jCoordinate.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setFocusable(false);
@@ -457,14 +536,20 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
             .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+                .addComponent(jCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -583,6 +668,14 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bMagnifierActionPerformed
 
+    private void jCurveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCurveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCurveActionPerformed
+
+    private void jPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPolygonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPolygonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -632,6 +725,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JToggleButton bText;
     private javax.swing.JButton bUndo;
     private javax.swing.JComboBox<String> cbRotate;
+    private javax.swing.JLabel jCoordinate;
+    private javax.swing.JToggleButton jCurve;
     private javax.swing.JMenuItem jExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -639,12 +734,18 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JToggleButton jLine;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jNew;
     private javax.swing.JMenuItem jOpen;
+    private javax.swing.JToggleButton jOval;
     private javax.swing.JPanel jPanelOption;
     private javax.swing.JPanel jPanelView;
+    private javax.swing.JToggleButton jPolygon;
+    private javax.swing.JToggleButton jRectangle;
+    private javax.swing.JToggleButton jRoundRectangle;
     private javax.swing.JMenuItem jSave;
     private javax.swing.JMenuItem jSaveAs;
     private javax.swing.JScrollPane jScrollPane;
@@ -653,5 +754,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JToggleButton jTriangle;
     // End of variables declaration//GEN-END:variables
 }
