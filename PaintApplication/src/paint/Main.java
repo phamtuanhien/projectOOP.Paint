@@ -270,8 +270,18 @@ public class Main extends javax.swing.JFrame {
         });
 
         jLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/line.png"))); // NOI18N
+        jLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLineActionPerformed(evt);
+            }
+        });
 
         jOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/oval.png"))); // NOI18N
+        jOval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOvalActionPerformed(evt);
+            }
+        });
 
         jPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/poligon.png"))); // NOI18N
         jPolygon.addActionListener(new java.awt.event.ActionListener() {
@@ -281,12 +291,32 @@ public class Main extends javax.swing.JFrame {
         });
 
         jRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/rectangle.png"))); // NOI18N
+        jRectangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRectangleActionPerformed(evt);
+            }
+        });
 
         jRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/roundedRectangle.png"))); // NOI18N
+        jRoundRectangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRoundRectangleActionPerformed(evt);
+            }
+        });
 
         jTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/triangle.png"))); // NOI18N
+        jTriangle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTriangleActionPerformed(evt);
+            }
+        });
 
         jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/right-triangle.png"))); // NOI18N
+        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelOptionLayout = new javax.swing.GroupLayout(jPanelOption);
         jPanelOption.setLayout(jPanelOptionLayout);
@@ -675,6 +705,30 @@ public class Main extends javax.swing.JFrame {
     private void jPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPolygonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPolygonActionPerformed
+
+    private void jLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLineActionPerformed
+
+    private void jOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOvalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jOvalActionPerformed
+
+    private void jRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRectangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRectangleActionPerformed
+
+    private void jRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRoundRectangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRoundRectangleActionPerformed
+
+    private void jTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTriangleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTriangleActionPerformed
+
+    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -705,6 +705,9 @@
                   <Image iconType="3" name="/imagebutton/line.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jLineActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jOval">
               <Properties>
@@ -712,6 +715,9 @@
                   <Image iconType="3" name="/imagebutton/oval.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jOvalActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jPolygon">
               <Properties>
@@ -729,6 +735,9 @@
                   <Image iconType="3" name="/imagebutton/rectangle.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRectangleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jRoundRectangle">
               <Properties>
@@ -736,6 +745,9 @@
                   <Image iconType="3" name="/imagebutton/roundedRectangle.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRoundRectangleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jTriangle">
               <Properties>
@@ -743,6 +755,9 @@
                   <Image iconType="3" name="/imagebutton/triangle.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTriangleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jToggleButton8">
               <Properties>
@@ -750,6 +765,9 @@
                   <Image iconType="3" name="/imagebutton/right-triangle.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton8ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
