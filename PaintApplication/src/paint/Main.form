@@ -2,6 +2,8 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -282,28 +284,28 @@
                       <Component id="jSeparator5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLine" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="jCurve" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="bLine" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="bCurve" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jOval" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jPolygon" pref="0" max="32767" attributes="0"/>
+                                  <Component id="bOval" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="bHexagon" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jRectangle" min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jRoundRectangle" pref="0" max="32767" attributes="0"/>
+                                  <Component id="bRectangle" min="-2" pref="41" max="-2" attributes="0"/>
+                                  <Component id="bRoundRectangle" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jLabel7" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jToggleButton8" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="jTriangle" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="bRightTriangle" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="bTriangle" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="568" max="32767" attributes="0"/>
                   </Group>
@@ -365,10 +367,10 @@
                                                   <Component id="bPencil" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="bEraser" min="-2" max="-2" attributes="0"/>
                                                   <Component id="bFill" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jCurve" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jOval" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jRectangle" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jTriangle" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="bCurve" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="bOval" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="bRectangle" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="bTriangle" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -383,10 +385,10 @@
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLine" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jPolygon" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jRoundRectangle" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jToggleButton8" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bLine" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bHexagon" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bRoundRectangle" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bRightTriangle" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -465,6 +467,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bSelect">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/selection.png"/>
                 </Property>
@@ -587,9 +592,13 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bPencil">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/pencil.png"/>
                 </Property>
+                <Property name="selected" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPencilActionPerformed"/>
@@ -597,6 +606,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bEraser">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/eraser.png"/>
                 </Property>
@@ -607,6 +619,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bFill">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/fill.png"/>
                 </Property>
@@ -617,6 +632,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bColorPicker">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/color-picker.png"/>
                 </Property>
@@ -627,6 +645,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bText">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/A.png"/>
                 </Property>
@@ -637,6 +658,9 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="bMagnifier">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/search.png"/>
                 </Property>
@@ -689,84 +713,108 @@
                 <Property name="text" type="java.lang.String" value="Shapes"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jCurve">
+            <Component class="javax.swing.JToggleButton" name="bCurve">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/curve.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCurveActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCurveActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jLine">
+            <Component class="javax.swing.JToggleButton" name="bLine">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/line.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jLineActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLineActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jOval">
+            <Component class="javax.swing.JToggleButton" name="bOval">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/oval.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jOvalActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bOvalActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jPolygon">
+            <Component class="javax.swing.JToggleButton" name="bHexagon">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/poligon.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPolygonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bHexagonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jRectangle">
+            <Component class="javax.swing.JToggleButton" name="bRectangle">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/rectangle.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRectangleActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRectangleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jRoundRectangle">
+            <Component class="javax.swing.JToggleButton" name="bRoundRectangle">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/roundedRectangle.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRoundRectangleActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRoundRectangleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jTriangle">
+            <Component class="javax.swing.JToggleButton" name="bTriangle">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/triangle.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTriangleActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bTriangleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="jToggleButton8">
+            <Component class="javax.swing.JToggleButton" name="bRightTriangle">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/right-triangle.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton8ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRightTriangleActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

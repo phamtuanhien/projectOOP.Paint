@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -26,11 +27,14 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    
+    private ButtonGroup buttonGroup;
     private PaintPanel paintPanel;
     private JPanel backgroundPanel = new JPanel();
     private BufferedImage buff_img;
     public Main() {
         initComponents();
+        
         paintPanel = new PaintPanel(800, 400);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(new Color(219, 228, 241));
@@ -38,17 +42,6 @@ public class Main extends javax.swing.JFrame {
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
         paintPanel.setCoordinate(jCoordinate);
-    }
-    
-    
-    //che do ve
-    public static enum DrawMode {LINE, POLYGON, RECTANGLE, ROUNDRECT, PENCIL};
-    private DrawMode drawMode = DrawMode.PENCIL;
-    public DrawMode getDrawMode() {
-        return drawMode;
-    }
-    public void setDrawMode(DrawMode newDrawMode) {
-        this.drawMode = newDrawMode;
     }
     
     
@@ -61,6 +54,7 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelOption = new javax.swing.JPanel();
         bPaste = new javax.swing.JButton();
@@ -86,14 +80,14 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        jCurve = new javax.swing.JToggleButton();
-        jLine = new javax.swing.JToggleButton();
-        jOval = new javax.swing.JToggleButton();
-        jPolygon = new javax.swing.JToggleButton();
-        jRectangle = new javax.swing.JToggleButton();
-        jRoundRectangle = new javax.swing.JToggleButton();
-        jTriangle = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
+        bCurve = new javax.swing.JToggleButton();
+        bLine = new javax.swing.JToggleButton();
+        bOval = new javax.swing.JToggleButton();
+        bHexagon = new javax.swing.JToggleButton();
+        bRectangle = new javax.swing.JToggleButton();
+        bRoundRectangle = new javax.swing.JToggleButton();
+        bTriangle = new javax.swing.JToggleButton();
+        bRightTriangle = new javax.swing.JToggleButton();
         jPanelView = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         jCoordinate = new javax.swing.JLabel();
@@ -147,6 +141,7 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("ClipBoard");
 
+        buttonGroup1.add(bSelect);
         bSelect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/selection.png"))); // NOI18N
         bSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,13 +198,16 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Redo");
 
+        buttonGroup1.add(bPencil);
         bPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/pencil.png"))); // NOI18N
+        bPencil.setSelected(true);
         bPencil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPencilActionPerformed(evt);
             }
         });
 
+        buttonGroup1.add(bEraser);
         bEraser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/eraser.png"))); // NOI18N
         bEraser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +215,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bFill);
         bFill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/fill.png"))); // NOI18N
         bFill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,6 +223,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bColorPicker);
         bColorPicker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/color-picker.png"))); // NOI18N
         bColorPicker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +231,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bText);
         bText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/A.png"))); // NOI18N
         bText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -238,6 +239,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(bMagnifier);
         bMagnifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/search.png"))); // NOI18N
         bMagnifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,59 +264,67 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Shapes");
 
-        jCurve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/curve.png"))); // NOI18N
-        jCurve.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bCurve);
+        bCurve.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/curve.png"))); // NOI18N
+        bCurve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCurveActionPerformed(evt);
+                bCurveActionPerformed(evt);
             }
         });
 
-        jLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/line.png"))); // NOI18N
-        jLine.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bLine);
+        bLine.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/line.png"))); // NOI18N
+        bLine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLineActionPerformed(evt);
+                bLineActionPerformed(evt);
             }
         });
 
-        jOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/oval.png"))); // NOI18N
-        jOval.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bOval);
+        bOval.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/oval.png"))); // NOI18N
+        bOval.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jOvalActionPerformed(evt);
+                bOvalActionPerformed(evt);
             }
         });
 
-        jPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/poligon.png"))); // NOI18N
-        jPolygon.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bHexagon);
+        bHexagon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/poligon.png"))); // NOI18N
+        bHexagon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPolygonActionPerformed(evt);
+                bHexagonActionPerformed(evt);
             }
         });
 
-        jRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/rectangle.png"))); // NOI18N
-        jRectangle.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bRectangle);
+        bRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/rectangle.png"))); // NOI18N
+        bRectangle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRectangleActionPerformed(evt);
+                bRectangleActionPerformed(evt);
             }
         });
 
-        jRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/roundedRectangle.png"))); // NOI18N
-        jRoundRectangle.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bRoundRectangle);
+        bRoundRectangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/roundedRectangle.png"))); // NOI18N
+        bRoundRectangle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRoundRectangleActionPerformed(evt);
+                bRoundRectangleActionPerformed(evt);
             }
         });
 
-        jTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/triangle.png"))); // NOI18N
-        jTriangle.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bTriangle);
+        bTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/triangle.png"))); // NOI18N
+        bTriangle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTriangleActionPerformed(evt);
+                bTriangleActionPerformed(evt);
             }
         });
 
-        jToggleButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/right-triangle.png"))); // NOI18N
-        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bRightTriangle);
+        bRightTriangle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/right-triangle.png"))); // NOI18N
+        bRightTriangle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton8ActionPerformed(evt);
+                bRightTriangleActionPerformed(evt);
             }
         });
 
@@ -375,23 +385,23 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLine, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCurve, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bLine, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bCurve, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelOptionLayout.createSequentialGroup()
                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jOval, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPolygon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(bOval, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bHexagon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRoundRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(bRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bRoundRectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTriangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bRightTriangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bTriangle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(568, Short.MAX_VALUE))
         );
         jPanelOptionLayout.setVerticalGroup(
@@ -440,10 +450,10 @@ public class Main extends javax.swing.JFrame {
                                             .addComponent(bPencil)
                                             .addComponent(bEraser)
                                             .addComponent(bFill)
-                                            .addComponent(jCurve)
-                                            .addComponent(jOval)
-                                            .addComponent(jRectangle)
-                                            .addComponent(jTriangle))
+                                            .addComponent(bCurve)
+                                            .addComponent(bOval)
+                                            .addComponent(bRectangle)
+                                            .addComponent(bTriangle))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanelOptionLayout.createSequentialGroup()
@@ -455,10 +465,10 @@ public class Main extends javax.swing.JFrame {
                                                 .addComponent(jLabel6))
                                             .addGroup(jPanelOptionLayout.createSequentialGroup()
                                                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLine)
-                                                    .addComponent(jPolygon)
-                                                    .addComponent(jRoundRectangle)
-                                                    .addComponent(jToggleButton8))
+                                                    .addComponent(bLine)
+                                                    .addComponent(bHexagon)
+                                                    .addComponent(bRoundRectangle)
+                                                    .addComponent(bRightTriangle))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel7)))))
                                 .addGap(4, 4, 4)))))
@@ -675,7 +685,6 @@ public class Main extends javax.swing.JFrame {
 
     private void bPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPencilActionPerformed
         // TODO add your handling code here:
-        setDrawMode(drawMode.PENCIL);
     }//GEN-LAST:event_bPencilActionPerformed
 
     private void bColorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bColorPickerActionPerformed
@@ -698,37 +707,37 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bMagnifierActionPerformed
 
-    private void jCurveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCurveActionPerformed
+    private void bCurveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCurveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCurveActionPerformed
+    }//GEN-LAST:event_bCurveActionPerformed
 
-    private void jPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPolygonActionPerformed
+    private void bHexagonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHexagonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPolygonActionPerformed
+    }//GEN-LAST:event_bHexagonActionPerformed
 
-    private void jLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLineActionPerformed
+    private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLineActionPerformed
+    }//GEN-LAST:event_bLineActionPerformed
 
-    private void jOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOvalActionPerformed
+    private void bOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOvalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jOvalActionPerformed
+    }//GEN-LAST:event_bOvalActionPerformed
 
-    private void jRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRectangleActionPerformed
+    private void bRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRectangleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRectangleActionPerformed
+    }//GEN-LAST:event_bRectangleActionPerformed
 
-    private void jRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRoundRectangleActionPerformed
+    private void bRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRoundRectangleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRoundRectangleActionPerformed
+    }//GEN-LAST:event_bRoundRectangleActionPerformed
 
-    private void jTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTriangleActionPerformed
+    private void bTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTriangleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTriangleActionPerformed
+    }//GEN-LAST:event_bTriangleActionPerformed
 
-    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
+    private void bRightTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRightTriangleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton8ActionPerformed
+    }//GEN-LAST:event_bRightTriangleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -768,19 +777,27 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton bColorPicker;
     private javax.swing.JButton bCopy;
+    private javax.swing.JToggleButton bCurve;
     private javax.swing.JButton bCut;
     private javax.swing.JToggleButton bEraser;
     private javax.swing.JToggleButton bFill;
+    private javax.swing.JToggleButton bHexagon;
+    private javax.swing.JToggleButton bLine;
     private javax.swing.JToggleButton bMagnifier;
+    private javax.swing.JToggleButton bOval;
     private javax.swing.JButton bPaste;
     private javax.swing.JToggleButton bPencil;
+    private javax.swing.JToggleButton bRectangle;
     private javax.swing.JButton bRedo;
+    private javax.swing.JToggleButton bRightTriangle;
+    private javax.swing.JToggleButton bRoundRectangle;
     private javax.swing.JToggleButton bSelect;
     private javax.swing.JToggleButton bText;
+    private javax.swing.JToggleButton bTriangle;
     private javax.swing.JButton bUndo;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbRotate;
     private javax.swing.JLabel jCoordinate;
-    private javax.swing.JToggleButton jCurve;
     private javax.swing.JMenuItem jExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -789,17 +806,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JToggleButton jLine;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jNew;
     private javax.swing.JMenuItem jOpen;
-    private javax.swing.JToggleButton jOval;
     private javax.swing.JPanel jPanelOption;
     private javax.swing.JPanel jPanelView;
-    private javax.swing.JToggleButton jPolygon;
-    private javax.swing.JToggleButton jRectangle;
-    private javax.swing.JToggleButton jRoundRectangle;
     private javax.swing.JMenuItem jSave;
     private javax.swing.JMenuItem jSaveAs;
     private javax.swing.JScrollPane jScrollPane;
@@ -808,7 +820,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JToggleButton jToggleButton8;
-    private javax.swing.JToggleButton jTriangle;
     // End of variables declaration//GEN-END:variables
 }

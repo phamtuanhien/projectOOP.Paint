@@ -17,43 +17,41 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
+import shape.Line;
 
 public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
     /**
      * Creates new form DrawPanel
     */
-//    private int width;
-//    private int height;
     Graphics2D g2d, g2; // doi tuong do hoa
     private BufferedImage buff_img; // anh de ve
     private boolean isSaved;
     private Point startPoint,  endPoint;
     private JLabel jCoordinate;
-    public PaintPanel() {
-        initComponents();
-        
-    }  
+    private Line line;
     
     public PaintPanel(int width, int height) {
         initComponents();
-//        this.width = width;
-//        this.height = height;
+        line = new Line();
+        startPoint = new Point(-1,-1);
+        endPoint = new Point(-1,-1);
         this.setSize(width, height);
         this.setLocation(5, 5);
         buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         g2d = (Graphics2D) buff_img.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(new Color(255, 255, 255));
         g2d.fillRect(0, 0, width, height);
         g2d.dispose();
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
-        
     }
     private void doDrawing(Graphics g) {
         g2 = (Graphics2D) g;
@@ -61,7 +59,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     }
     public void setImage(BufferedImage img) {
         buff_img = img;
-        g2d = (Graphics2D) buff_img.getGraphics();
+        g2d = (Graphics2D) buff_img.createGraphics();
         isSaved = true;
         this.setSize(buff_img.getWidth(), buff_img.getHeight());
         this.revalidate();
@@ -108,11 +106,14 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     @Override
     public void mousePressed(MouseEvent e) {
         startPoint = e.getPoint();
+        repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+        startPoint = null;
+        endPoint = null;
+        repaint();
     }
 
     @Override
@@ -129,6 +130,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     public void mouseDragged(MouseEvent e) {
         jCoordinate.setText(e.getX() + ", " + e.getY() + " px");
         endPoint = e.getPoint();
+        repaint();
     }
 
     @Override
