@@ -24,6 +24,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
+import shape.Bucket;
 import shape.Line;
 import shape.Pencil;
 import shape.Rectangle;
@@ -41,17 +42,22 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Line line;
     private Rectangle rect;
     private Pencil pencil;
+    private Bucket bucket;
     private String mode;
     private int x = 0;
     public PaintPanel(int width, int height) {
         initComponents();
+        
         mode = new String("PENCIL");
         pencil = new Pencil();
-        startPoint = new Point(-10,-10);
-        endPoint = new Point(-10,-10);
+        line = new Line();
+        bucket = new Bucket();
+        startPoint = new Point();
+        endPoint = new Point();
+        
+        buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         this.setSize(width, height);
         this.setLocation(5, 5);
-        buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         
         g2d = (Graphics2D) buff_img.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -63,7 +69,12 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     }
     private void doDrawing(Graphics g) {
         g2 = (Graphics2D) g;
-        g2.drawImage(buff_img, null, 0, 0);      
+        g2.drawImage(buff_img, null, 0, 0);   
+        switch(mode) {
+            case "LINE":
+                line.draw(g2);
+                break;
+        }
     }
     public void setImage(BufferedImage img) {
         buff_img = img;
@@ -111,7 +122,15 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        switch(mode) {
+            case "BUCKET":
+                bucket.setClick(e.getPoint());
+                bucket.setArrPoint(endPoint);
+                bucket.setColor(Color.BLACK);
+                bucket.draw(buff_img);
+                
+        }
+        repaint();
     }
 
     @Override
@@ -123,6 +142,10 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     public void mouseReleased(MouseEvent e) {
         startPoint = null;
         endPoint = null;
+        switch(mode) {
+            case "LINE":
+                line.draw(g2d);
+        }
         repaint();
     }
 
@@ -144,11 +167,10 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "SELECT":
                 break;
             case "PENCIL":
-                pencil = new Pencil();
                 pencil.setPoint(startPoint, endPoint);
                 pencil.addArrPoint(endPoint);
-                startPoint = endPoint;
-                pencil.setStrokeColor(Color.black);
+                startPoint = endPoint;       
+                pencil.setStrokeColor(Color.BLACK);
                 pencil.draw(g2d);
                 break;
             case "COLORPICKER":
@@ -166,6 +188,8 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "HEXAGON":
                 break;
             case "LINE":
+                line.setPoint(startPoint, endPoint);
+                line.setStrokeColor(Color.BLACK);
                 break;
             case "OVAL":
                 break;
