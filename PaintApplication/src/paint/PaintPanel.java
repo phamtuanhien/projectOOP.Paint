@@ -12,6 +12,7 @@ package paint;
 
 
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,7 +24,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
+import shape.Bucket;
 import shape.Line;
+import shape.Pencil;
+import shape.Rectangle;
 
 public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
@@ -36,26 +40,41 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Point startPoint,  endPoint;
     private JLabel jCoordinate;
     private Line line;
-    
+    private Rectangle rect;
+    private Pencil pencil;
+    private Bucket bucket;
+    private String mode;
+    private int x = 0;
     public PaintPanel(int width, int height) {
         initComponents();
+        
+        mode = new String("PENCIL");
+        pencil = new Pencil();
         line = new Line();
-        startPoint = new Point(-1,-1);
-        endPoint = new Point(-1,-1);
+        bucket = new Bucket();
+        startPoint = new Point();
+        endPoint = new Point();
+        
+        buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         this.setSize(width, height);
         this.setLocation(5, 5);
-        buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        
         g2d = (Graphics2D) buff_img.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(new Color(255, 255, 255));
         g2d.fillRect(0, 0, width, height);
-        g2d.dispose();
+        
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
     }
     private void doDrawing(Graphics g) {
         g2 = (Graphics2D) g;
-        g2.drawImage(buff_img, null, 0, 0);
+        g2.drawImage(buff_img, null, 0, 0);   
+        switch(mode) {
+            case "LINE":
+                line.draw(g2);
+                break;
+        }
     }
     public void setImage(BufferedImage img) {
         buff_img = img;
@@ -70,6 +89,9 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     }
     public void setCoordinate(JLabel jCoordinate) {
         this.jCoordinate = jCoordinate;
+    }
+    public void setMode(String mode) {
+        this.mode = mode;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,12 +117,20 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        doDrawing(g);
+        doDrawing(g);      
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        switch(mode) {
+            case "BUCKET":
+                bucket.setClick(e.getPoint());
+                bucket.setArrPoint(endPoint);
+                bucket.setColor(Color.BLACK);
+                bucket.draw(buff_img);
+                
+        }
+        repaint();
     }
 
     @Override
@@ -108,11 +138,14 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         startPoint = e.getPoint();
         repaint();
     }
-
     @Override
     public void mouseReleased(MouseEvent e) {
         startPoint = null;
         endPoint = null;
+        switch(mode) {
+            case "LINE":
+                line.draw(g2d);
+        }
         repaint();
     }
 
@@ -130,6 +163,45 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     public void mouseDragged(MouseEvent e) {
         jCoordinate.setText(e.getX() + ", " + e.getY() + " px");
         endPoint = e.getPoint();
+        switch(mode) {
+            case "SELECT":
+                break;
+            case "PENCIL":
+                pencil.setPoint(startPoint, endPoint);
+                pencil.addArrPoint(endPoint);
+                startPoint = endPoint;       
+                pencil.setStrokeColor(Color.BLACK);
+                pencil.draw(g2d);
+                break;
+            case "COLORPICKER":
+                break;
+            case "ERASER":
+                break;
+            case "TEXT":
+                break;
+            case "BUCKET":
+                break;
+            case "MAGNIFIER":
+                break;
+            case "CURVE":
+                break;
+            case "HEXAGON":
+                break;
+            case "LINE":
+                line.setPoint(startPoint, endPoint);
+                line.setStrokeColor(Color.BLACK);
+                break;
+            case "OVAL":
+                break;
+            case "RECTANGLE":
+                break;
+            case "ROUNDRECTANGLE":
+                break;
+            case "TRIANGLE":
+                break;
+            case "RIGHTTRIANGLE":
+                break;
+        }
         repaint();
     }
 
