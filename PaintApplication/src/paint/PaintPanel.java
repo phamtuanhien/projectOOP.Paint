@@ -29,6 +29,7 @@ import shape.Eraser;
 import shape.Line;
 import shape.Oval;
 import shape.Pencil;
+import shape.Polygon;
 import shape.Rectangle;
 import shape.RightTriangle;
 import shape.RoundRect;
@@ -51,6 +52,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private RoundRect roundRect;
     private Triangle triangle;
     private RightTriangle rightTriangle;
+    private Polygon polygon;
     private Pencil pencil;
     private Bucket bucket;
     private String mode;
@@ -66,6 +68,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         roundRect = new RoundRect();
         triangle = new Triangle();
         rightTriangle = new RightTriangle();
+        polygon = new Polygon();
         eraser = new Eraser();
         bucket = new Bucket();
         startPoint = new Point();
@@ -105,6 +108,8 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "RIGHTTRIANGLE":
                 rightTriangle.draw(g2);
                 break;
+            case "POLYGON":
+                line.draw(g2);
         }
     }
     public void setImage(BufferedImage img) {
@@ -180,6 +185,28 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 eraser.setSize(10);
                 eraser.draw(g2d);
                 break;
+            case "LINE":
+                line.setStrokeColor(Color.yellow);
+                break;
+            case "OVAL":
+                oval.setFillColor(Color.yellow);
+                break;
+            case "RECTANGLE":
+                rect.setStrokeColor(Color.yellow);
+                break;
+            case "ROUNDRECTANGLE":
+                roundRect.setStrokeColor(Color.yellow);
+                break;
+            case "TRIANGLE":
+                triangle.setStrokeColor(Color.yellow);
+                break;
+            case "RIGHTTRIANGLE":
+                rightTriangle.setStrokeColor(Color.yellow);
+                break;
+            case "POLYGON":
+                line.setStrokeColor(Color.yellow);
+                break;
+                
         }
         repaint();
     }
@@ -206,6 +233,9 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "RIGHTTRIANGLE":
                 rightTriangle.draw(g2d);
                 break;
+            case "POLYGON":
+                polygon.draw(g2d);
+                
         }
         repaint();
     }
@@ -247,30 +277,25 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "CURVE":
                 break;
             case "POLYGON":
+                line.setPoint(startPoint, endPoint);
                 break;
             case "LINE":
                 line.setPoint(startPoint, endPoint);
-                line.setStrokeColor(Color.BLACK);
                 break;
             case "OVAL":
                 oval.setPoint(startPoint, endPoint);
-                oval.setFillColor(Color.yellow);
                 break;
             case "RECTANGLE":
                 rect.setPoint(startPoint, endPoint);
-                rect.setStrokeColor(Color.yellow);
                 break;
             case "ROUNDRECTANGLE":
                 roundRect.setPoint(startPoint, endPoint);
-                roundRect.setStrokeColor(Color.yellow);
                 break;
             case "TRIANGLE":
                 triangle.setPoint(startPoint, endPoint);
-                roundRect.setStrokeColor(Color.yellow);
                 break;
             case "RIGHTTRIANGLE":
                 rightTriangle.setPoint(startPoint, endPoint);
-                rightTriangle.setStrokeColor(Color.yellow);
                 break;
         }
         repaint();
