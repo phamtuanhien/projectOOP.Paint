@@ -10,8 +10,6 @@ package paint;
  * @author Tuan Hien
  */
 
-
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -306,9 +304,6 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         jCoordinate.setText(e.getX() + ", " + e.getY() + " px");
         
     }
-    
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
