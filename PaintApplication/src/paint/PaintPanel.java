@@ -27,8 +27,12 @@ import javax.swing.JLabel;
 import shape.Bucket;
 import shape.Eraser;
 import shape.Line;
+import shape.Oval;
 import shape.Pencil;
 import shape.Rectangle;
+import shape.RightTriangle;
+import shape.RoundRect;
+import shape.Triangle;
 
 public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
@@ -41,8 +45,12 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Point startPoint,  endPoint;
     private JLabel jCoordinate;
     private Line line;
+    private Oval oval;
     private Eraser eraser;
     private Rectangle rect;
+    private RoundRect roundRect;
+    private Triangle triangle;
+    private RightTriangle rightTriangle;
     private Pencil pencil;
     private Bucket bucket;
     private String mode;
@@ -53,6 +61,11 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         mode = new String("PENCIL");
         pencil = new Pencil();
         line = new Line();
+        oval = new Oval();
+        rect = new Rectangle();
+        roundRect = new RoundRect();
+        triangle = new Triangle();
+        rightTriangle = new RightTriangle();
         eraser = new Eraser();
         bucket = new Bucket();
         startPoint = new Point();
@@ -76,6 +89,21 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         switch(mode) {
             case "LINE":
                 line.draw(g2);
+                break;
+            case "OVAL":
+                oval.draw(g2);
+                break;
+            case "RECTANGLE":
+                rect.draw(g2);
+                break;
+            case "ROUNDRECTANGLE":
+                roundRect.draw(g2);
+                break;
+            case "TRIANGLE":
+                triangle.draw(g2);
+                break;
+            case "RIGHTTRIANGLE":
+                rightTriangle.draw(g2);
                 break;
         }
     }
@@ -125,10 +153,12 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        endPoint = e.getPoint();
         switch(mode) {
             case "BUCKET":
                 bucket.addArrPoint(endPoint);
                 bucket.setColor(Color.BLACK);
+                bucket.setPoint(endPoint, endPoint);
                 bucket.draw(buff_img);
                 
         }
@@ -142,14 +172,14 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "PENCIL":
                 pencil.setPoint(startPoint, startPoint);
                 pencil.setStrokeColor(Color.BLACK);
-                pencil.addArrPoint(startPoint);
                 pencil.draw(g2d);
+                break;
             case "ERASER":
                 eraser.setPoint(startPoint, startPoint);
                 eraser.setStrokeColor(Color.WHITE);
                 eraser.setSize(10);
                 eraser.draw(g2d);
-                
+                break;
         }
         repaint();
     }
@@ -160,6 +190,22 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         switch(mode) {
             case "LINE":
                 line.draw(g2d);
+                break;
+            case "OVAL":
+                oval.draw(g2d);
+                break;
+            case "RECTANGLE":
+                rect.draw(g2d);
+                break;
+            case "ROUNDRECTANGLE":
+                roundRect.draw(g2d);
+                break;
+            case "TRIANGLE":
+                triangle.draw(g2d);
+                break;
+            case "RIGHTTRIANGLE":
+                rightTriangle.draw(g2d);
+                break;
         }
         repaint();
     }
@@ -183,7 +229,6 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 break;
             case "PENCIL":
                 pencil.setPoint(startPoint, endPoint);
-                pencil.addArrPoint(endPoint);
                 startPoint = endPoint;       
                 pencil.draw(g2d);
                 break;
@@ -201,21 +246,31 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 break;
             case "CURVE":
                 break;
-            case "HEXAGON":
+            case "POLYGON":
                 break;
             case "LINE":
                 line.setPoint(startPoint, endPoint);
                 line.setStrokeColor(Color.BLACK);
                 break;
             case "OVAL":
+                oval.setPoint(startPoint, endPoint);
+                oval.setFillColor(Color.yellow);
                 break;
             case "RECTANGLE":
+                rect.setPoint(startPoint, endPoint);
+                rect.setStrokeColor(Color.yellow);
                 break;
             case "ROUNDRECTANGLE":
+                roundRect.setPoint(startPoint, endPoint);
+                roundRect.setStrokeColor(Color.yellow);
                 break;
             case "TRIANGLE":
+                triangle.setPoint(startPoint, endPoint);
+                roundRect.setStrokeColor(Color.yellow);
                 break;
             case "RIGHTTRIANGLE":
+                rightTriangle.setPoint(startPoint, endPoint);
+                rightTriangle.setStrokeColor(Color.yellow);
                 break;
         }
         repaint();

@@ -203,6 +203,7 @@ public class Main extends javax.swing.JFrame {
 
         buttonGroup1.add(bPencil);
         bPencil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/pencil.png"))); // NOI18N
+        bPencil.setSelected(true);
         bPencil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPencilActionPerformed(evt);
@@ -291,7 +292,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(bHexagon);
-        bHexagon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/poligon.png"))); // NOI18N
+        bHexagon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/polygon.png"))); // NOI18N
         bHexagon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bHexagonActionPerformed(evt);
@@ -749,7 +750,7 @@ public class Main extends javax.swing.JFrame {
 
     private void bHexagonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHexagonActionPerformed
         // TODO add your handling code here:
-        paintPanel.setMode("HEXAGON");
+        paintPanel.setMode("POLYGON");
     }//GEN-LAST:event_bHexagonActionPerformed
 
     private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed

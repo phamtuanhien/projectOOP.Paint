@@ -611,6 +611,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagebutton/pencil.png"/>
                 </Property>
+                <Property name="selected" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPencilActionPerformed"/>
@@ -770,7 +771,7 @@
                   <ComponentRef name="buttonGroup1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/imagebutton/poligon.png"/>
+                  <Image iconType="3" name="/imagebutton/polygon.png"/>
                 </Property>
               </Properties>
               <Events>
