@@ -88,7 +88,8 @@ public class Main extends javax.swing.JFrame {
         bRoundRectangle = new javax.swing.JToggleButton();
         bTriangle = new javax.swing.JToggleButton();
         bRightTriangle = new javax.swing.JToggleButton();
-        jPanelView = new javax.swing.JPanel();
+        jPanelText = new javax.swing.JPanel();
+        textPanel1 = new property.TextPanel();
         jScrollPane = new javax.swing.JScrollPane();
         jCoordinate = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -477,18 +478,24 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Option", jPanelOption);
 
-        javax.swing.GroupLayout jPanelViewLayout = new javax.swing.GroupLayout(jPanelView);
-        jPanelView.setLayout(jPanelViewLayout);
-        jPanelViewLayout.setHorizontalGroup(
-            jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanelTextLayout = new javax.swing.GroupLayout(jPanelText);
+        jPanelText.setLayout(jPanelTextLayout);
+        jPanelTextLayout.setHorizontalGroup(
+            jPanelTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTextLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(825, Short.MAX_VALUE))
         );
-        jPanelViewLayout.setVerticalGroup(
-            jPanelViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
+        jPanelTextLayout.setVerticalGroup(
+            jPanelTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTextLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("View", jPanelView);
+        jTabbedPane1.addTab("Text", jPanelText);
 
         jScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jScrollPane.setAlignmentX(0.0F);
@@ -826,7 +833,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jNew;
     private javax.swing.JMenuItem jOpen;
     private javax.swing.JPanel jPanelOption;
-    private javax.swing.JPanel jPanelView;
+    private javax.swing.JPanel jPanelText;
     private javax.swing.JMenuItem jSave;
     private javax.swing.JMenuItem jSaveAs;
     private javax.swing.JScrollPane jScrollPane;
@@ -835,5 +842,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private property.TextPanel textPanel1;
     // End of variables declaration//GEN-END:variables
 }
