@@ -25,6 +25,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JLabel;
 import shape.Bucket;
+import shape.Eraser;
 import shape.Line;
 import shape.Pencil;
 import shape.Rectangle;
@@ -40,6 +41,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Point startPoint,  endPoint;
     private JLabel jCoordinate;
     private Line line;
+    private Eraser eraser;
     private Rectangle rect;
     private Pencil pencil;
     private Bucket bucket;
@@ -51,6 +53,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         mode = new String("PENCIL");
         pencil = new Pencil();
         line = new Line();
+        eraser = new Eraser();
         bucket = new Bucket();
         startPoint = new Point();
         endPoint = new Point();
@@ -124,8 +127,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     public void mouseClicked(MouseEvent e) {
         switch(mode) {
             case "BUCKET":
-                bucket.setClick(e.getPoint());
-                bucket.setArrPoint(endPoint);
+                bucket.addArrPoint(endPoint);
                 bucket.setColor(Color.BLACK);
                 bucket.draw(buff_img);
                 
@@ -136,6 +138,19 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     @Override
     public void mousePressed(MouseEvent e) {
         startPoint = e.getPoint();
+        switch(mode) {
+            case "PENCIL":
+                pencil.setPoint(startPoint, startPoint);
+                pencil.setStrokeColor(Color.BLACK);
+                pencil.addArrPoint(startPoint);
+                pencil.draw(g2d);
+            case "ERASER":
+                eraser.setPoint(startPoint, startPoint);
+                eraser.setStrokeColor(Color.WHITE);
+                eraser.setSize(10);
+                eraser.draw(g2d);
+                
+        }
         repaint();
     }
     @Override
@@ -170,12 +185,13 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 pencil.setPoint(startPoint, endPoint);
                 pencil.addArrPoint(endPoint);
                 startPoint = endPoint;       
-                pencil.setStrokeColor(Color.BLACK);
                 pencil.draw(g2d);
                 break;
             case "COLORPICKER":
                 break;
             case "ERASER":
+                eraser.setPoint(endPoint, endPoint);
+                eraser.draw(g2d);
                 break;
             case "TEXT":
                 break;
