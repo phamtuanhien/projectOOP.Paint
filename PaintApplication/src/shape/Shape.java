@@ -23,7 +23,7 @@ public class Shape implements Serializable {
     protected ArrayList <Point> arrPoint = new ArrayList<Point>();
     protected Point startPoint = new Point();
     protected Point endPoint = new Point();
-    protected boolean doFill; //Có đổ màu nền hay không ? True - Có / False - Không
+    protected boolean doFill = true; //Có đổ màu nền hay không ? True - Có / False - Không
     //Lấy màu    
     public Color getStrokeColor() {
         return strokeColor;

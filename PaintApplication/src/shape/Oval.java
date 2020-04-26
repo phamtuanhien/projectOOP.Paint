@@ -25,9 +25,11 @@ public class Oval extends Shape implements DrawType{
     public void draw(Graphics2D g2d) {
         BasicStroke stroke = new BasicStroke(width, cap, join, miterlimit, dash, dash_phase);
         g2d.setStroke(stroke); // lấy kiểu nét vẽ
+        if (doFill == true){
         g2d.setColor(fillColor); // lấy màu phần trong oval
         g2d.fillOval(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y),// vẽ oval
                 Math.abs(startPoint.x - endPoint.x), Math.abs(startPoint.y - endPoint.y));
+        }
         g2d.setColor(strokeColor);                                                          // lấy màu cho phần viền
         g2d.drawOval(Math.min(startPoint.x, endPoint.x), Math.min(startPoint.y, endPoint.y),// vẽ viền
                 Math.abs(startPoint.x - endPoint.x), Math.abs(startPoint.y - endPoint.y));
