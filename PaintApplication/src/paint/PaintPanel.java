@@ -7,7 +7,7 @@ package paint;
 
 /**
  *
- * @author Tuan Hien
+ * @author All
  */
 
 import java.awt.BasicStroke;
@@ -34,7 +34,7 @@ import shape.RoundRect;
 import shape.Triangle;
 import shape.Curve;
 import java.lang.Math;
-
+import property.Stroke;
 public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
     /**
@@ -57,9 +57,15 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Bucket bucket;
     private Curve curve;
     private String mode;
+    private Stroke stroke;
     private int x = 0;
     private double r = 15.0;
     private boolean dragged;
+
+    public void setStroke(Stroke stroke) {
+        this.stroke = stroke;
+    }
+    
     public PaintPanel(int width, int height) {
         initComponents();
         
@@ -206,37 +212,46 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "PENCIL":
                 pencil.setPoint(startPoint, startPoint);
                 pencil.setStrokeColor(Color.BLACK);
+                pencil.setStroke(stroke.getStroke());
                 pencil.draw(g2d);
                 break;
             case "ERASER":
                 eraser.setPoint(startPoint, startPoint);
                 eraser.setStrokeColor(Color.WHITE);
                 eraser.setSize(10);
+                eraser.setStroke(stroke.getStroke());
                 eraser.draw(g2d);
                 break;
             case "LINE":
                 line.setStrokeColor(Color.yellow);
+                line.setStroke(stroke.getStroke());
                 break;
             case "OVAL":
                 oval.setFillColor(Color.yellow);
+                oval.setStroke(stroke.getStroke());
                 break;
             case "RECTANGLE":
                 rect.setStrokeColor(Color.yellow);
+                rect.setStroke(stroke.getStroke());
                 break;
             case "ROUNDRECTANGLE":
                 roundRect.setStrokeColor(Color.yellow);
+                roundRect.setStroke(stroke.getStroke());
                 break;
             case "TRIANGLE":
                 triangle.setStrokeColor(Color.yellow);
+                triangle.setStroke(stroke.getStroke());
                 break;
             case "RIGHTTRIANGLE":
                 rightTriangle.setStrokeColor(Color.yellow);
+                rightTriangle.setStroke(stroke.getStroke());
                 break;
             case "POLYGON":
                 if(polygon.getStartPoint() == null){//chua su dung polygon
                     polygon.setStartPoint(startPoint);
                 }
                 line.setStrokeColor(Color.black);
+                line.setStroke(stroke.getStroke());
                 if(endPoint != null){
                     if(distance(startPoint, polygon.getStartPoint()) < this.r )
                         startPoint = polygon.getStartPoint();
@@ -263,6 +278,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 if(curve.getStartPoint() == null){
                     curve.setStrokeColor(Color.black);
                     curve.setStartPoint(startPoint);
+                    curve.setStroke(stroke.getStroke());
                 }
                 if(curve.getState() == 1) //vua khoi tao bang cach nhan vao mot diem tren panel
                     curve.setEndPoint(startPoint);
