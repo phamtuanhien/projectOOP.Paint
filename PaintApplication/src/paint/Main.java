@@ -718,6 +718,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
     private void bSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSelectActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("SELECT");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bSelectActionPerformed
 
     private void bCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCopyActionPerformed
@@ -743,71 +744,85 @@ public class Main extends javax.swing.JFrame implements ActionListener{
     private void bPencilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPencilActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("PENCIL");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bPencilActionPerformed
 
     private void bColorPickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bColorPickerActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("COLORPICKER");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bColorPickerActionPerformed
 
     private void bEraserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEraserActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("ERASER");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bEraserActionPerformed
 
     private void bTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTextActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("TEXT");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bTextActionPerformed
 
     private void bBucketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBucketActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("BUCKET");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bBucketActionPerformed
 
     private void bMagnifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMagnifierActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("MAGNIFIER");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bMagnifierActionPerformed
 
     private void bCurveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCurveActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("CURVE");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bCurveActionPerformed
 
     private void bHexagonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHexagonActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("POLYGON");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bHexagonActionPerformed
 
     private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("LINE");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bLineActionPerformed
 
     private void bOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOvalActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("OVAL");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bOvalActionPerformed
 
     private void bRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRectangleActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("RECTANGLE");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bRectangleActionPerformed
 
     private void bRoundRectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRoundRectangleActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("ROUNDRECTANGLE");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bRoundRectangleActionPerformed
 
     private void bTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTriangleActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("TRIANGLE");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bTriangleActionPerformed
 
     private void bRightTriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRightTriangleActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("RIGHTTRIANGLE");
+        paintPanel.ChangeTool();
     }//GEN-LAST:event_bRightTriangleActionPerformed
 
     @Override

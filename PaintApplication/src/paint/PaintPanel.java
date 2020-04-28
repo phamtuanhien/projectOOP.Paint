@@ -74,11 +74,6 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         polygon = new Polygon();
         eraser = new Eraser();
         bucket = new Bucket();
-        curve = new Curve();
-                
-        startPoint = null;
-        endPoint = null;
-        
         buff_img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         this.setSize(width, height);
         this.setLocation(5, 5);
@@ -170,23 +165,17 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 line.draw(g2d);
                 repaint();
                 polygon.setPoint(null, null);
-                line = null;
+                startPoint = null;
+                endPoint = null;
             }
         }
-        else if(curve.getState() != 3){
-            if(mode.equals("CURVE")){//neu chua co du 2 diem cong ma muon ve duong moi => chon lai vao curve
+        else if(curve != null){
                 curve.draw(g2d);
                 repaint();
                 curve = null;
-            }
-            else {
-                curve.draw(g2d);
-                repaint();
-                curve = null;
-            }
-        }
-        startPoint = null;
-        endPoint = null;
+                startPoint = null;
+                endPoint = null;
+            } 
     }
     @Override
     public void paintComponent(Graphics g) {
@@ -259,8 +248,6 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "CURVE":
                 if(curve == null){
                     curve = new Curve();
-                }
-                if(curve.getStartPoint() == null){
                     curve.setStrokeColor(Color.black);
                     curve.setStartPoint(startPoint);
                 }
