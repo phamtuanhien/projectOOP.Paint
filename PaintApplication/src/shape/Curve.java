@@ -22,7 +22,7 @@ public class Curve extends Shape implements DrawType{
     public Curve(){
         //tao 4 diem ban dau cho CurveLine de tien loi cho viec set cac diem
         //vi diem dau la start point va diem cuoi doan thang o cuoi CurveLine
-        for(int i=0 ; i<4;i++){
+        for(int i=0 ; i<2;i++){
             curveLine.add(new Point(0, 0));
         }
     }
@@ -52,7 +52,7 @@ public class Curve extends Shape implements DrawType{
         BasicStroke str = new BasicStroke(width, cap, join, miterlimit, dash, dash_phase);
         g2d.setStroke(str);
         g2d.setColor(strokeColor);
-        if(state != 3){
+        if(this.state != 3){
             //get(0): start; get(1),get(2) la control point(dieu huong cong); get(3):end
             //doan code co y nghia sau
             //neu state = 1: chi moi ve doan thang chua cong; control point chua co
@@ -60,14 +60,14 @@ public class Curve extends Shape implements DrawType{
             //neu state =2 : da co control point nhung chi co 1 control point
             //tao 2 control point trung nhau get(1) <-get(2) vi mousedragger luon tao control point add vao get(2)
             //state = 3: 2 control point khac nhau khong can thay doi gi ca
-            if(state == 1){
-                curveLine.get(2).setLocation(curveLine.get(3));
+            if(this.state == 1){
+                curveLine.get(1).setLocation(this.getEndPoint());
             }
-            curveLine.get(1).setLocation(curveLine.get(2));
+            curveLine.get(0).setLocation(curveLine.get(1));
         }
         GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
-        path.moveTo(curveLine.get(0).x, curveLine.get(0).y); //co dinh diem start   
-        path.curveTo(curveLine.get(1).x, curveLine.get(1).y, curveLine.get(2).x, curveLine.get(2).y, curveLine.get(3).x, curveLine.get(3).y); // point 2 + point 3
+        path.moveTo(this.getStartPoint().x, this.startPoint.y); //co dinh diem start   
+        path.curveTo(curveLine.get(0).x, curveLine.get(0).y, curveLine.get(1).x, curveLine.get(1).y, this.getEndPoint().x, this.getEndPoint().y); // point 2 + point 3
         g2d.draw(path);
     }
 }
