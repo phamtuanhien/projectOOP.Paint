@@ -5,19 +5,52 @@
  */
 package property;
 
+import java.awt.BasicStroke;
 /**
  *
- * @author Tuan Hien
+ * @author Tuan Hien + Hoang Anh
  */
 public class Stroke extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Stroke
-     */
+    private float strokeWidth = 1f; // kich thuoc net ve mac dinh
+    private BasicStroke stroke = new BasicStroke(strokeWidth);
+    private float[] dash;
+    
+    private static final float[] DASH1 =  null;
+    private static final float[] DASH2 =  {2f};
+    private static final float[] DASH3 =  {2f, 4f};
+    private static final float[] DASH4 =  {2f, 4f, 6f, 8f};
+    
     public Stroke() {
         initComponents();
     }
 
+    public float getStrokeWidth() {
+        return strokeWidth;
+    }
+
+    public void setStrokeWidth(float strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public BasicStroke getStroke() {
+        return stroke;
+    }
+
+    public void setStroke(float strokeWidth, float[] dash) {
+        BasicStroke bsStroke = new BasicStroke(strokeWidth, BasicStroke.CAP_BUTT,
+                            BasicStroke.JOIN_BEVEL, 1.0f, dash, 1f);
+        this.stroke = bsStroke;
+    }
+
+    public float[] getDash() {
+        return dash;
+    }
+
+    public void setDash(float[] dash) {
+        this.dash = dash;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,8 +70,23 @@ public class Stroke extends javax.swing.JPanel {
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stroke 1", "Stroke 2", "Stroke 3", "Stroke 4" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "4", "6", "8", "10", "12", "16", "20", "24", "32" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -65,6 +113,43 @@ public class Stroke extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        
+        switch (jComboBox1.getSelectedIndex()) {
+            case 0 :
+                this.setDash(DASH1);
+                this.setStroke(strokeWidth, dash);
+                break;
+            case 1 : 
+                this.setDash(DASH2);
+                this.setStroke(strokeWidth, dash);
+                break;
+            case 2 : 
+                this.setDash(DASH3);
+                this.setStroke(strokeWidth, dash);
+                break;
+            case 3 :
+                this.setDash(DASH4);
+                this.setStroke(strokeWidth, dash);
+                break;
+            default: 
+                break;
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        // TODO add your handling code here:
+        
+        this.setStrokeWidth( (float) (jComboBox2.getSelectedIndex() + 1) );
+        this.setStroke(strokeWidth, dash);
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
