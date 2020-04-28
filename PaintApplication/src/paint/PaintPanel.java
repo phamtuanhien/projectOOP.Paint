@@ -236,21 +236,20 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 if(polygon == null){//chua su dung polygon
                     polygon = new Polygon();//khoi tao doi tuong
                     polygon.setStartPoint(startPoint);
-                    line.setStrokeColor(Color.black);
                 }
                 line.setStrokeColor(Color.black);
                 if(endPoint != null){
                     if(distance(startPoint, polygon.getStartPoint()) < this.r )
-                        startPoint.setLocation(polygon.getStartPoint());
+                        startPoint = polygon.getStartPoint();
                     //da ve 1 hoac nhieu duong thang roi => ta se ve duong thang tu diem cuoi duong thang truoc toi diem vua nhan
                     Point temp = new Point(startPoint);//endPoint la diem cuoi duong thang trc => chuyen sang startPoint
                     startPoint = endPoint;
                     endPoint = temp;//diem vua nhan thanh diem cuoi cua duong thang vua ve
                     line.setPoint(startPoint, endPoint);
                 }
-                else 
-                    line.setPoint(startPoint, startPoint);//neu chua ve duong thang nao ta ve 1 diem 
-                
+                else {
+                    line.setPoint(startPoint, startPoint);//neu chua ve duong thang nao ta ve 1 diem
+                }
                 break;
             case "BUCKET":
                 bucket.addArrPoint(startPoint);
@@ -304,7 +303,18 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 rightTriangle.draw(g2d);
                 break;
             case "POLYGON":
-                line.draw(g2d);//tha chuot se ve duong thang
+                if(endPoint != null){
+                    line.draw(g2d);//ve khi tha chuot
+                    if(endPoint.y == polygon.getStartPoint().y && endPoint.x == polygon.getStartPoint().x){
+                        endPoint = null;
+                        polygon = null;
+                        startPoint = null;
+                    }
+                }
+                else {
+                    endPoint = e.getPoint();
+                    line.draw(g2d);
+                }
                 return;
             case "CURVE":
                 if(curve != null){
