@@ -39,7 +39,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
     public Main() {
         initComponents();
         
-        paintPanel = new PaintPanel(800, 400);
+        paintPanel = new PaintPanel(800, 500);
         backgroundPanel.setLayout(null);
         backgroundPanel.setBackground(new Color(219, 228, 241));
         backgroundPanel.setPreferredSize(new Dimension(paintPanel.getWidth()+5,paintPanel.getHeight()+5));
@@ -519,7 +519,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(33, 33, 33))
+                .addGap(36, 36, 36))
         );
 
         jTabbedPane1.addTab("Option", jPanelOption);
@@ -534,13 +534,14 @@ public class Main extends javax.swing.JFrame implements ActionListener{
             jPanelTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTextLayout.createSequentialGroup()
                 .addComponent(textPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 758, Short.MAX_VALUE))
+                .addGap(0, 578, Short.MAX_VALUE))
         );
         jPanelTextLayout.setVerticalGroup(
             jPanelTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTextLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(textPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Text", jPanelText);
@@ -639,9 +640,9 @@ public class Main extends javax.swing.JFrame implements ActionListener{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCoordinate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
