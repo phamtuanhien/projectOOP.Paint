@@ -24,7 +24,6 @@ public class TextPanel extends javax.swing.JPanel {
 
     private boolean isOpaque; // >< transparent:trong suốt. liên quan đến vấn đề đoạn văn bản sau và đoạn văn bản trước có phần giao nhau
     private Font font;
-    private Font fontAuto= new Font("Arial",PLAIN,14);
 //getter and setter 
 
     public boolean isIsOpaque() {
@@ -74,8 +73,8 @@ public class TextPanel extends javax.swing.JPanel {
     public TextPanel() {
         initComponents();
         //khởi tao mặc định 
-        this.setFontName("Agency FB");
-        this.setFontSize(11);
+        this.setFontName("Arial");
+        this.setFontSize(14);
         this.setFontStyle(PLAIN);
         this.setFont(fontName, fontStyle, fontSize);
     }
@@ -115,7 +114,7 @@ public class TextPanel extends javax.swing.JPanel {
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "36", "48", "72" }));
-        jComboBox2.setSelectedIndex(3);
+        jComboBox2.setSelectedIndex(5);
         jComboBox2.setAlignmentX(0.0F);
         jComboBox2.setAlignmentY(0.0F);
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -167,6 +166,7 @@ public class TextPanel extends javax.swing.JPanel {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(246, 80));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jTextArea1.setRows(5);
@@ -218,14 +218,16 @@ public class TextPanel extends javax.swing.JPanel {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jComboBox2, jToggleButton2, jToggleButton4, jToggleButton5});
@@ -242,6 +244,7 @@ public class TextPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.setFontStyle(ITALIC);
         this.setFont(fontName, fontStyle, fontSize);
+        jTextArea1.setFont(font);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
@@ -253,12 +256,16 @@ public class TextPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.setFontStyle(PLAIN);
         this.setFont(fontName, fontStyle, fontSize);
+        jTextArea1.setFont(font);
+
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         // TODO add your handling code here:
         this.setFontStyle(BOLD);
         this.setFont(fontName, fontStyle, fontSize);
+        jTextArea1.setFont(font);
+
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
@@ -275,6 +282,7 @@ public class TextPanel extends javax.swing.JPanel {
         String s = (String) jComboBox2.getSelectedItem();
         this.setFontSize(Integer.parseInt(s));
         this.setFont(fontName, fontStyle, fontSize);
+        jTextArea1.setFont(font);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
@@ -282,7 +290,7 @@ public class TextPanel extends javax.swing.JPanel {
         String s = (String) jComboBox2.getSelectedItem();
         this.setFontName(s);
         this.setFont(fontName, fontStyle, fontSize);
-        jTextArea1.setFont(new Font(fontName,fontStyle,14));
+        jTextArea1.setFont(font);
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 

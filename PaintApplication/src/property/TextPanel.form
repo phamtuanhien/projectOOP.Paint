@@ -56,15 +56,18 @@
                   <Component id="jToggleButton3" linkSize="4" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jToggleButton2" linkSize="2" alignment="3" max="32767" attributes="0"/>
-                  <Component id="jToggleButton5" linkSize="2" alignment="3" max="32767" attributes="0"/>
-                  <Component id="jToggleButton1" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jComboBox2" linkSize="2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jToggleButton4" linkSize="2" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jToggleButton2" linkSize="2" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jToggleButton5" linkSize="2" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jToggleButton1" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="37" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="72" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,7 +120,7 @@
             <StringItem index="15" value="72"/>
           </StringArray>
         </Property>
-        <Property name="selectedIndex" type="int" value="3"/>
+        <Property name="selectedIndex" type="int" value="5"/>
         <Property name="alignmentX" type="float" value="0.0"/>
         <Property name="alignmentY" type="float" value="0.0"/>
       </Properties>
@@ -197,6 +200,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="jTextArea1">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="0"/>
