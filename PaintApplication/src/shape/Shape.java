@@ -47,6 +47,18 @@ public class Shape implements Serializable {
     public Point getStartPoint() {
         return startPoint;
     }
+    
+    public Point getEndPoint(){
+        return endPoint;
+    }
+    
+    public void setStartPoint(Point start){
+        this.startPoint = start;
+    }
+    
+    public void setEndPoint(Point end){
+        this.endPoint = end;
+    }
     //Tạo điểm bắt đầu và kết thúc
     public void setPoint(Point startPoint, Point endPoint) {
         this.startPoint = startPoint;

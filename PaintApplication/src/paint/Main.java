@@ -7,7 +7,11 @@ package paint;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -22,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Tuan Hien
  */
-public class Main extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form Main
@@ -42,6 +46,13 @@ public class Main extends javax.swing.JFrame {
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
         paintPanel.setCoordinate(jCoordinate);
+        paintPanel.addPropertyChangeListener(new PropertyChangeListener(){
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                paintPanel.ChangeTool();
+            }
+            
+        });
     }
     
     
@@ -800,6 +811,11 @@ public class Main extends javax.swing.JFrame {
         paintPanel.setMode("RIGHTTRIANGLE");
     }//GEN-LAST:event_bRightTriangleActionPerformed
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     /**
      * @param args the command line arguments
      */
