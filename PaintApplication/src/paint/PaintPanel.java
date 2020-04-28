@@ -71,10 +71,10 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         roundRect = new RoundRect();
         triangle = new Triangle();
         rightTriangle = new RightTriangle();
-        polygon = null;
+        polygon = new Polygon();
         eraser = new Eraser();
         bucket = new Bucket();
-        curve = null;
+        curve = new Curve();
                 
         startPoint = null;
         endPoint = null;
@@ -233,8 +233,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 rightTriangle.setStrokeColor(Color.yellow);
                 break;
             case "POLYGON":
-                if(polygon == null){//chua su dung polygon
-                    polygon = new Polygon();//khoi tao doi tuong
+                if(polygon.getStartPoint() == null){//chua su dung polygon
                     polygon.setStartPoint(startPoint);
                 }
                 line.setStrokeColor(Color.black);
@@ -260,6 +259,8 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
             case "CURVE":
                 if(curve == null){
                     curve = new Curve();
+                }
+                if(curve.getStartPoint() == null){
                     curve.setStrokeColor(Color.black);
                     curve.setStartPoint(startPoint);
                 }
@@ -307,7 +308,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                     line.draw(g2d);//ve khi tha chuot
                     if(endPoint.y == polygon.getStartPoint().y && endPoint.x == polygon.getStartPoint().x){
                         endPoint = null;
-                        polygon = null;
+                        polygon.setStartPoint(null); 
                         startPoint = null;
                     }
                 }
