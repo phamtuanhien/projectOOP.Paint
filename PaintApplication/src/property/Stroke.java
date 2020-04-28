@@ -6,6 +6,18 @@
 package property;
 
 import java.awt.BasicStroke;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Dimension;
+import java.awt.Component;
+
+import javax.swing.ImageIcon;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+
+
 /**
  *
  * @author Tuan Hien + Hoang Anh
@@ -17,11 +29,12 @@ public class Stroke extends javax.swing.JPanel {
     
     private static final float[] DASH1 =  null;
     private static final float[] DASH2 =  {2f};
-    private static final float[] DASH3 =  {2f, 4f};
+    private static final float[] DASH3 =  {5f, 10f};
     private static final float[] DASH4 =  {2f, 4f, 6f, 8f};
-    
+    private static final float[] DASH5 = {4f, 4f, 1f};
     public Stroke() {
         initComponents();
+        this.setStrokeComboBox();
     }
 
     public float getStrokeWidth() {
@@ -69,7 +82,7 @@ public class Stroke extends javax.swing.JPanel {
         setAlignmentY(0.0F);
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stroke 1", "Stroke 2", "Stroke 3", "Stroke 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stroke 1", "Stroke 2", "Stroke 3", "Stroke 4", "Stroke 5" }));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -137,20 +150,64 @@ public class Stroke extends javax.swing.JPanel {
                 this.setDash(DASH4);
                 this.setStroke(strokeWidth, dash);
                 break;
+            case 4 :
+                this.setDash(DASH5);
+                this.setStroke(strokeWidth, dash);
+                break;
             default: 
                 break;
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:  
         this.setStrokeWidth( (float) (jComboBox2.getSelectedIndex() + 1) );
         this.setStroke(strokeWidth, dash);
     }//GEN-LAST:event_jComboBox2ItemStateChanged
     
+    // Tao class Hinh anh bieu tuong stroke
+    class StrokeComboRenderer extends JLabel implements ListCellRenderer {
+        private String fileDashIcon[] = new String[]{"dash1", "dash2", "dash3", "dash4", "dash5"};
+        private ImageIcon dashIcon[] = new ImageIcon[5];
+        
+        public StrokeComboRenderer() {
+            setOpaque(true); //Cho phep sua nen doi tuong
+            //Dat anh vao giua
+            setHorizontalAlignment(CENTER); //Can ngang
+            setVerticalAlignment(CENTER); //Can doc
+            
+            for(int i = 0 ; i < fileDashIcon.length; ++i) {
+                dashIcon[i] = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagebutton/" + fileDashIcon[i] + ".png")));
+            }
+        }
+        
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            if (isSelected) { //Neu da chon doi tuong thi set nen doi tuong duoc chon, con khong tao mac dinh
+                setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
+            }
+            else {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            }
+            ImageIcon icon = dashIcon[((Integer) value).intValue()];
+            setIcon(icon);
+            return this;
+        } 
+    }
     
-
+    private void setStrokeComboBox() {
+        DefaultComboBoxModel dfComboBoxModel = new DefaultComboBoxModel();
+        for (int i = 0 ; i < jComboBox1.getItemCount() ; ++i) {
+            dfComboBoxModel.addElement(i);
+        }
+        jComboBox1.setModel(dfComboBoxModel); //Dinh dang kieu comboBox
+        
+        StrokeComboRenderer renderer = new StrokeComboRenderer();
+        renderer.setPreferredSize(new Dimension(86, 30));
+        jComboBox1.setRenderer(renderer);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
