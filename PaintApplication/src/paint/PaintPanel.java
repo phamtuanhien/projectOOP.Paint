@@ -33,6 +33,7 @@ import shape.RightTriangle;
 import shape.RoundRect;
 import shape.Triangle;
 import shape.Curve;
+import java.lang.Math;
 
 public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
@@ -57,6 +58,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Curve curve;
     private String mode;
     private int x = 0;
+    private double r = 15.0;
     private boolean dragged;
     public PaintPanel(int width, int height) {
         initComponents();
@@ -69,7 +71,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
         roundRect = new RoundRect();
         triangle = new Triangle();
         rightTriangle = new RightTriangle();
-        polygon = new Polygon();
+        polygon = null;
         eraser = new Eraser();
         bucket = new Bucket();
         curve = null;
@@ -119,6 +121,9 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                     curve.draw(g2);
                 break;
         }
+    }
+    public double distance(Point a, Point b){
+        return Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
     }
     public void setImage(BufferedImage img) {
         buff_img = img;
@@ -231,9 +236,12 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 if(polygon == null){//chua su dung polygon
                     polygon = new Polygon();//khoi tao doi tuong
                     polygon.setStartPoint(startPoint);
+                    line.setStrokeColor(Color.black);
                 }
                 line.setStrokeColor(Color.black);
                 if(endPoint != null){
+                    if(distance(startPoint, polygon.getStartPoint()) < this.r )
+                        startPoint.setLocation(polygon.getStartPoint());
                     //da ve 1 hoac nhieu duong thang roi => ta se ve duong thang tu diem cuoi duong thang truoc toi diem vua nhan
                     Point temp = new Point(startPoint);//endPoint la diem cuoi duong thang trc => chuyen sang startPoint
                     startPoint = endPoint;
@@ -296,8 +304,6 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
                 rightTriangle.draw(g2d);
                 break;
             case "POLYGON":
-                endPoint = e.getPoint();
-                line.setPoint(startPoint, endPoint);
                 line.draw(g2d);//tha chuot se ve duong thang
                 return;
             case "CURVE":
