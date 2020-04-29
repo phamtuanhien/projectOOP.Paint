@@ -290,7 +290,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="bOval" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="bPolygon" pref="0" max="32767" attributes="0"/>
+                          <Component id="bHexagon" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -396,7 +396,7 @@
                                                       <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="bLine" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="bPolygon" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="bHexagon" min="-2" max="-2" attributes="0"/>
                                                           <Component id="bRoundRectangle" min="-2" max="-2" attributes="0"/>
                                                           <Component id="bRightTriangle" min="-2" max="-2" attributes="0"/>
                                                       </Group>
@@ -778,7 +778,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bOvalActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="bPolygon">
+            <Component class="javax.swing.JToggleButton" name="bHexagon">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroup1"/>
@@ -788,7 +788,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPolygonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bHexagonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="bRectangle">

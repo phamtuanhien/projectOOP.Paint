@@ -46,6 +46,13 @@ public class Main extends javax.swing.JFrame implements ActionListener{
         backgroundPanel.add(paintPanel);
         jScrollPane.setViewportView(backgroundPanel);
         paintPanel.setCoordinate(jCoordinate);
+        paintPanel.addPropertyChangeListener(new PropertyChangeListener(){
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                paintPanel.ChangeTool();
+            }
+            
+        });
     }
     
     
@@ -87,7 +94,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
         bCurve = new javax.swing.JToggleButton();
         bLine = new javax.swing.JToggleButton();
         bOval = new javax.swing.JToggleButton();
-        bPolygon = new javax.swing.JToggleButton();
+        bHexagon = new javax.swing.JToggleButton();
         bRectangle = new javax.swing.JToggleButton();
         bRoundRectangle = new javax.swing.JToggleButton();
         bTriangle = new javax.swing.JToggleButton();
@@ -297,11 +304,11 @@ public class Main extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        buttonGroup1.add(bPolygon);
-        bPolygon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/polygon.png"))); // NOI18N
-        bPolygon.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(bHexagon);
+        bHexagon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagebutton/polygon.png"))); // NOI18N
+        bHexagon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bPolygonActionPerformed(evt);
+                bHexagonActionPerformed(evt);
             }
         });
 
@@ -409,7 +416,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bOval, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bPolygon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(bHexagon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelOptionLayout.createSequentialGroup()
@@ -494,7 +501,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
                                                 .addGap(47, 47, 47)
                                                 .addGroup(jPanelOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(bLine)
-                                                    .addComponent(bPolygon)
+                                                    .addComponent(bHexagon)
                                                     .addComponent(bRoundRectangle)
                                                     .addComponent(bRightTriangle)))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelOptionLayout.createSequentialGroup()
@@ -776,10 +783,11 @@ public class Main extends javax.swing.JFrame implements ActionListener{
         paintPanel.ChangeTool();
     }//GEN-LAST:event_bCurveActionPerformed
 
-    private void bPolygonActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void bHexagonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHexagonActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("POLYGON");
         paintPanel.ChangeTool();
+    }//GEN-LAST:event_bHexagonActionPerformed
 
     private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed
         // TODO add your handling code here:
@@ -864,12 +872,12 @@ public class Main extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JToggleButton bCurve;
     private javax.swing.JButton bCut;
     private javax.swing.JToggleButton bEraser;
+    private javax.swing.JToggleButton bHexagon;
     private javax.swing.JToggleButton bLine;
     private javax.swing.JToggleButton bMagnifier;
     private javax.swing.JToggleButton bOval;
     private javax.swing.JButton bPaste;
     private javax.swing.JToggleButton bPencil;
-    private javax.swing.JToggleButton bPolygon;
     private javax.swing.JToggleButton bRectangle;
     private javax.swing.JButton bRedo;
     private javax.swing.JToggleButton bRightTriangle;
