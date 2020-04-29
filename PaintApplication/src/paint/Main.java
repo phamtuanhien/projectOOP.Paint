@@ -788,7 +788,7 @@ public class Main extends javax.swing.JFrame implements ActionListener{
         // TODO add your handling code here:
         paintPanel.setMode("POLYGON");
         paintPanel.ChangeTool();
-
+    }
     private void bLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLineActionPerformed
         // TODO add your handling code here:
         paintPanel.setMode("LINE");
