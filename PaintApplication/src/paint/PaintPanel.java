@@ -7,7 +7,7 @@ package paint;
 
 /**
  *
- * @author All
+ * @author Tuan Hien
  */
 
 import java.awt.BasicStroke;
@@ -34,7 +34,7 @@ import shape.RoundRect;
 import shape.Triangle;
 import shape.Curve;
 import java.lang.Math;
-import property.Stroke;
+
 public class PaintPanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener{
 
     /**
@@ -43,7 +43,7 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     Graphics2D g2d, g2; // doi tuong do hoa
     private BufferedImage buff_img; // anh de ve
     private boolean isSaved;
-    private Point startPoint,  endPoint, polygonPoint;
+    private Point startPoint,  endPoint = null;
     private JLabel jCoordinate;
     private Line line = new Line();
     private Oval oval;
@@ -57,15 +57,9 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     private Bucket bucket;
     private Curve curve;
     private String mode;
-    private Stroke stroke;
     private int x = 0;
     private double r = 15.0;
     private boolean dragged;
-
-    public void setStroke(Stroke stroke) {
-        this.stroke = stroke;
-    }
-    
     public PaintPanel(int width, int height) {
         initComponents();
         
@@ -410,4 +404,3 @@ public class PaintPanel extends javax.swing.JPanel implements MouseListener, Mou
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
-
